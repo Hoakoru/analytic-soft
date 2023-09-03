@@ -1,11 +1,12 @@
 import img1 from "../assets/img/img1.jpeg";
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { Link as ScrollLink } from "react-scroll";
 
 const Navbar = ({ currentPage }) => {
   const [isOffcanvasOpen, setIsOffcanvasOpen] = useState(false);
   const navigate = useNavigate();
+  const location = useLocation();
 
   const toggleOffcanvas = () => {
     setIsOffcanvasOpen(!isOffcanvasOpen);
@@ -50,29 +51,29 @@ const Navbar = ({ currentPage }) => {
       )}
 
       {/* Botón */}
-      {currentPage === "form" ? (
-        <Link
-          to="/suscription/login"
-          className="text-white bg-blue-800 hover:bg-amber-700 py-2 px-4 rounded hidden lg:flex"
-        >
-          Iniciar Sesión
-        </Link>
-      ) : (
-        <Link
-          to="/suscription/"
-          className="text-white bg-green-800 hover:bg-amber-700 py-2 px-4 rounded hidden lg:flex"
-        >
-          Registrarse
-        </Link>
-      )}
+      {location.pathname !== "/suscription/login" ? (
+        currentPage === "form" ? (
+          <Link
+            to="/suscription/login"
+            className="text-white bg-blue-800 hover:bg-amber-700 py-2 px-4 rounded hidden lg:flex"
+          >
+            Iniciar Sesión
+          </Link>
+        ) : (
+          <Link
+            to="/suscription/"
+            className="text-white bg-green-800 hover:bg-amber-700 py-2 px-4 rounded hidden lg:flex"
+          >
+            Registrarse
+          </Link>
+        )
+      ) : null}
 
-      {isOffcanvasOpen && (
-        <Offcanvas
-          isOpen={isOffcanvasOpen}
-          onClose={toggleOffcanvas}
-          currentPage={currentPage}
-        />
-      )}
+      <Offcanvas
+        isOpen={isOffcanvasOpen}
+        onClose={toggleOffcanvas}
+        currentPage={currentPage}
+      />
     </nav>
   );
 };
@@ -94,31 +95,25 @@ const ScrollNav = ({ title, opcion }) => {
 };
 
 const Offcanvas = ({ isOpen, onClose, currentPage }) => {
+  const navigate = useNavigate();
+  const location = useLocation();
+  
   return (
+    /* contenido de offcanvas */
     <div
       className={`fixed flex-col p-4 top-0 left-0 w-64 h-full bg-gray-800   ${
         isOpen ? "translate-x-0" : "-translate-x-full"
       } transform transition-transform duration-300 ease-in-out`}
     >
-      {/* Contenido del offcanvas */}
-      <div className="flex">
-        <img src={img1} alt="Logo" className="h-8 w-8 mr-2 rounded-full" />
+      {/* logo del offcanvas */}
+      <div
+        className="flex items-center cursor-pointer w-3/4"
+        onClick={() => navigate("/")}
+      >
+        <img src={img1} alt="Logo" className="h-12 w-12 mr-2 rounded-full" />
         <span className="text-white text-lg font-semibold">AnalyticSoft</span>
       </div>
-      {/* opsiones */}
-      {currentPage === "home" && (
-        <ul className="py-6 space-y-2 text-white">
-          <li className="mt-2">
-            <ScrollNav title="Home" opcion={"container"} />
-          </li>
-          <li className="mt-2">
-            <ScrollNav title="Servicios" opcion={"cardgroup"} />
-          </li>
-          <li className="mt-2">
-            <ScrollNav title="Clientes" opcion={"client"} />
-          </li>
-        </ul>
-      )}
+
       {/* boton para cerrar */}
       <button className="absolute top-4 right-4 text-white" onClick={onClose}>
         <svg
@@ -136,23 +131,40 @@ const Offcanvas = ({ isOpen, onClose, currentPage }) => {
           ></path>
         </svg>
       </button>
+
+      {/* opsiones */}
+      {currentPage === "home" && (
+        <ul className="py-6 space-y-2 text-white">
+          <li className="mt-2">
+            <ScrollNav title="Home" opcion={"container"} />
+          </li>
+          <li className="mt-2">
+            <ScrollNav title="Servicios" opcion={"cardgroup"} />
+          </li>
+          <li className="mt-2">
+            <ScrollNav title="Clientes" opcion={"client"} />
+          </li>
+        </ul>
+      )}
       {/* boton de inicio sesion */}
       <div className="mt-5 flex justify-center">
-        {currentPage === "form" ? (
-          <Link
-            to="/suscription/login"
-            className="text-white bg-blue-800 hover:bg-amber-700 py-2 px-4 rounded lg:flex "
-          >
-            Iniciar Sesión
-          </Link>
-        ) : (
-          <Link
-            to="/suscription/"
-            className="text-white bg-green-800 hover:bg-amber-700 py-2 px-4 rounded lg:flex "
-          >
-            Registrarse
-          </Link>
-        )}
+        {location.pathname !== "/suscription/login" ? (
+          currentPage === "form" ? (
+            <Link
+              to="/suscription/login"
+              className="text-white bg-blue-800 hover:bg-amber-700 py-2 px-4 rounded lg:flex "
+            >
+              Iniciar Sesión
+            </Link>
+          ) : (
+            <Link
+              to="/suscription/"
+              className="text-white bg-green-800 hover:bg-amber-700 py-2 px-4 rounded lg:flex "
+            >
+              Registrarse
+            </Link>
+          )
+        ) : null}
       </div>
     </div>
   );

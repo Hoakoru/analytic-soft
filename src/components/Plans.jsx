@@ -7,7 +7,7 @@ function Plans() {
       <CardGroup>
         <AsLink
           to="/suscription/"
-          className="text-white bg-green-800 hover:bg-amber-700 py-2 px-4 rounded "
+          className="text-white bg-blue-800 hover:bg-amber-700 py-2 px-4 rounded "
         >
           Volver
         </AsLink>

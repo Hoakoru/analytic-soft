@@ -11,7 +11,7 @@ const FormRegister = () => {
   const navigate = useNavigate(); /* impotrtacion de navegacion */
 
   return (
-    <div className="my-16 flex justify-center items-center container mx-auto">
+    <div className="my-16 flex justify-center items-center container mx-auto px-5">
       <Formik
         initialValues={{
           names: "",
@@ -22,20 +22,20 @@ const FormRegister = () => {
           year_exp: "",
         }}
         onSubmit={async (values, { resetForm }) => {
-          
           /* createTask(values); */
+          console.log(values)
           resetForm();
           navigate("/suscription/plans"); // Ajusta esto según tu navegación
         }}
       >
         {() => (
-          <Form className="w-1/2 bg-gradient-to-br from-slate-900 to-slate-700 shadow-md rounded mx-auto mt-10 p-10 mb-4 text-white bold space-y-5">
-            <h2 className="text-blue-200 font-bold text-3xl text-start mb-16">
+          <Form className="w-full lg:w-1/2 bg-gradient-to-br from-slate-900 to-slate-700 shadow-md rounded mx-auto mt-10 p-10  text-white bold space-y-5">
+            <h2 className="text-blue-400 font-bold text-3xl text-start mb-16">
               Llena los campos...
             </h2>
 
             {/* Nombre del jefe */}
-            <div className="mb-4">
+            <div>
               <label htmlFor="names" className="block font-bold mb-2">
                 Nombre completo:
               </label>
@@ -53,7 +53,7 @@ const FormRegister = () => {
             </div>
 
             {/* Correo */}
-            <div className="mb-4">
+            <div>
               <label htmlFor="email" className="block font-bold mb-2">
                 Correo electronico:
               </label>
@@ -70,7 +70,7 @@ const FormRegister = () => {
               />
             </div>
             {/* contrasenia de la cuenta */}
-            <div className="mb-4">
+            <div>
               <label htmlFor="pass" className="block font-bold mb-2">
                 Contraseña:
               </label>
@@ -87,7 +87,7 @@ const FormRegister = () => {
               />
             </div>
             {/* direccion de la empresa */}
-            <div className="mb-4">
+            <div>
               <label htmlFor="address" className="block font-bold mb-2">
                 Direccion:
               </label>
@@ -104,18 +104,23 @@ const FormRegister = () => {
               />
             </div>
 
-            <div className="flex space-x-4">
+            <div className="flex flex-col space-y-4 lg:space-y-0 lg:flex-row lg:space-x-4">
               {/* Nombre de la emnpresa */}
-              <div className="mb-4 w-full">
+              <div className="w-full">
                 <label htmlFor="company" className="block font-bold mb-2">
-                  Nombre de emnpresa:
+                  Nombre de empresa:
                 </label>
                 <Field
-                  type="number"
-                  id="company"
+                  as="select"
                   name="company"
+                  id="company"
                   className="shadow appearance-none border border-sky-500 bg-gradient-to-r from-slate-800 to-slate-700 rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline text-white"
-                />
+                >
+                  <option value="">Elige tu empresa</option>
+                  <option value="option1">Opción 1</option>
+                  <option value="option2">Opción 2</option>
+                  <option value="option3">Opción 3</option>
+                </Field>
                 <ErrorMessage
                   name="company"
                   component="div"
@@ -124,19 +129,21 @@ const FormRegister = () => {
               </div>
 
               {/* Años de experiencia */}
-              <div className="mb-4 w-full">
-                <label
-                  htmlFor="year_exp"
-                  className="block font-bold mb-2"
-                >
+              <div className="w-full">
+                <label htmlFor="year_exp" className="block font-bold mb-2">
                   Años de experiencia:
                 </label>
                 <Field
-                  type="number"
-                  id="year_exp"
+                  as="select"
                   name="year_exp"
+                  id="year_exp"
                   className="shadow appearance-none border border-sky-500 bg-gradient-to-r from-slate-800 to-slate-700 rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline text-white"
-                />
+                >
+                  <option value="">Elige la edad de tu empresa</option>
+                  <option value="option1">Opción 1</option>
+                  <option value="option2">Opción 2</option>
+                  <option value="option3">Opción 3</option>
+                </Field>
                 <ErrorMessage
                   name="year_exp"
                   component="div"
@@ -148,7 +155,7 @@ const FormRegister = () => {
             <div className="flex items-center justify-center">
               <button
                 type="submit"
-                className="bg-gradient-to-bl from-blue-800 to-blue-950 hover:from-indigo-600 hover:to-indigo-800 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-1/4"
+                className="bg-gradient-to-bl from-blue-800 to-blue-950 hover:from-indigo-600 hover:to-indigo-800 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full lg:w-1/4"
               >
                 Siguiente
               </button>
