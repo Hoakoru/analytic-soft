@@ -59,12 +59,19 @@ const Navbar = ({ currentPage }) => {
           >
             Iniciar Sesión
           </Link>
-        ) : (
+        ) : location.pathname !== "/application" ? (
           <Link
             to="/suscription/"
             className="text-white bg-green-800 hover:bg-amber-700 py-2 px-4 rounded hidden lg:flex"
           >
             Registrarse
+          </Link>
+        ) : (
+          <Link
+            to="/"
+            className="text-white bg-slate-800 hover:bg-amber-700 py-2 px-4 rounded hidden lg:flex"
+          >
+            Cerrar Sesion
           </Link>
         )
       ) : null}
@@ -97,7 +104,7 @@ const ScrollNav = ({ title, opcion }) => {
 const Offcanvas = ({ isOpen, onClose, currentPage }) => {
   const navigate = useNavigate();
   const location = useLocation();
-  
+
   return (
     /* contenido de offcanvas */
     <div
@@ -156,12 +163,19 @@ const Offcanvas = ({ isOpen, onClose, currentPage }) => {
             >
               Iniciar Sesión
             </Link>
-          ) : (
+          ) : location.pathname !== "/application" ? (
             <Link
               to="/suscription/"
               className="text-white bg-green-800 hover:bg-amber-700 py-2 px-4 rounded lg:flex "
             >
               Registrarse
+            </Link>
+          ) : (
+            <Link
+              to="/"
+              className="text-white bg-slate-800 hover:bg-amber-700 py-2 px-4 rounded lg:flex "
+            >
+              Cerrar Sesion
             </Link>
           )
         ) : null}

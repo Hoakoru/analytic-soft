@@ -26,7 +26,7 @@ const FormLogin = () => {
             onChangeFormeSend(true);
             setTimeout(() => onChangeFormeSend(false), 5000);
           } else {
-            navigate("/main");
+            navigate("/application");
           }
         }}
         validate={(values) => {
