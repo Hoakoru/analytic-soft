@@ -2,8 +2,9 @@ import GestorSells from "../components/GestorSells";
 import GestorUser from "../components/GestorUser";
 import Perfil from "../components/Perfil";
 import NavBar from "../components/NavBar";
-import Footer from "../components/Footer"
+import Footer from "../components/Footer";
 import CardModal from "../components/Modal";
+import FormUser from "../components/FormUser";
 
 const Application = () => {
   return (
@@ -17,10 +18,11 @@ const Application = () => {
         </div>
 
         {/* ventana modal */}
-        <CardModal>
-          <h2 className="text-2xl font-bold mb-4">Mi Ventana Modal</h2>
-          <p>Contenido de la ventana modal...</p>
-        </CardModal>
+        <div className="h-screen">
+          <CardModal>
+            <FormUser />
+          </CardModal>
+        </div>
 
         {/* ventana de los usuarios y ventas */}
         <div className="h-full lg:h-screen flex-col lg:w-3/4">

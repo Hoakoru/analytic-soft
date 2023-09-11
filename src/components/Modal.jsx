@@ -4,22 +4,18 @@ import { useServices } from "../context/ServiceContext";
 Modal.setAppElement("#root"); // Indica dónde se debe renderizar la ventana modal
 
 const CardModal = ({ children }) => {
-  const { isModalOpen, setIsModalOpen } = useServices();
+  const { isModalOpen } = useServices();
 
   return (
-    <Modal
-      isOpen={isModalOpen}
-      overlayClassName="fixed inset-0 bg-black opacity-50 transition-opacity duration-300"
-      className="bg-white p-4 rounded-lg shadow-lg outline-none"
-    >
-      {children}
-      <button
-        onClick={() => setIsModalOpen(false)}
-        className="mt-4 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 focus:outline-none"
+    <>
+      <Modal
+        isOpen={isModalOpen}
+        overlayClassName={`fixed inset-0 flex items-center justify-center`}
+        className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white mt-8 rounded-lg shadow-lg outline-none w-10/12 lg:w-1/2 bg-gradient-to-br from-slate-900 to-slate-700 flex flex-col justify-center items-center"
       >
-        Cerrar
-      </button>
-    </Modal>
+        {children}
+      </Modal>
+    </>
   );
 };
 
