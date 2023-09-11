@@ -1,17 +1,25 @@
 import axios from "axios";
 
-export const getTaskRequest = async () =>
-  await axios.get("http://localhost:4000/tasks");
+/* crear nuevos clientes de suscripcion */
+export const createUser = async () =>
+  await axios.post("http://localhost:4000/user", data);
 
-export const createTaskRequest = async (task) =>
-  await axios.post("http://localhost:4000/tasks", task);
+/* listar empleados de cada empresa */
+export const getEmployee = async () =>
+  await axios.get("http://localhost:4000/employee");
 
-export const deleteTaskRequest = async (id) =>
-  await axios.delete(`http://localhost:4000/tasks/${id}`);
+/* crear nuevos empleados de cada empresa */
+export const createEmployee = async () =>
+  await axios.post("http://localhost:4000/employee", data);
 
-export const getTaskRequestOne = async (id) =>
-  await axios.get(`http://localhost:4000/tasks/${id}`);
+/* eliminar empleado unico de la empresa */
+export const deleteEmployeeRequest = async (id) =>
+  await axios.delete(`http://localhost:4000/employee/${id}`);
 
-export const updateTaskRequest = async (id, newFields) =>
-  await axios.put(`http://localhost:4000/tasks/${id}`, newFields);
+/* listar un solo empleado de la empresa para modificar */
+export const getEmployeeRequestOne = async () =>
+  await axios.get(`http://localhost:4000/employee/${id}`);
 
+/* actualizar empleado */
+export const updateEmployeeRequest = async (id, newFields) =>
+  await axios.put(`http://localhost:4000/employee/${id}`, newFields);

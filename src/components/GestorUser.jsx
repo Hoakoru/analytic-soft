@@ -1,4 +1,5 @@
 import DataTable from "react-data-table-component";
+import Buttons from "./Buttons"
 import { useState } from "react";
 
 const GestorUser = () => {
@@ -6,17 +7,14 @@ const GestorUser = () => {
     {
       name: "ID",
       selector: (row) => row.id,
-      sortable: true,
     },
     {
       name: "Nombre",
       selector: (row) => row.nombre,
-      sortable: true,
     },
     {
       name: "Email",
       selector: (row) => row.email,
-      sortable: true,
     },
   ];
 
@@ -49,23 +47,19 @@ const GestorUser = () => {
   };
 
   return (
-    <div className="flex-1 bg-slate-600 ">
-      <div className="p-5 ">
-        <div className="text-end mb-4">
-          <input type="text" onChange={handleFilter} className="h-9 w-1/4" />
-        </div>
+    <div className="h-screen lg:h-1/2 lg:flex-1 bg-slate-600 p-5 flex flex-col lg:flex-row">
+      <div className="h-full w-full lg:w-10/12 overflow-y-scroll">
         <DataTable
-          title=""
           columns={columns}
           data={records}
           selectableRows
-          fixedHeader
           pagination
           highlightOnHover
           pointerOnHover
           persistTableHead
         />
       </div>
+      <Buttons />
     </div>
   );
 };

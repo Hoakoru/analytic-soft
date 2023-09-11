@@ -1,9 +1,11 @@
 import { useContext, useState, createContext } from "react";
 import {
-  createTaskRequest,
-  deleteTaskRequest,
-  getTaskRequestOne,
-  updateTaskRequest,
+  createUser,
+  createEmployee,
+  getEmployee,
+  getEmployeeRequestOne,
+  updateEmployeeRequest,
+  deleteEmployeeRequest,
 } from "../api/service.api";
 
 const ServiceContext = createContext();
@@ -18,38 +20,62 @@ export const useServices = () => {
 
 export const ServiceContextProvider = ({ children }) => {
   const [users, setUser] = useState([]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const createTask = async (task) => {
+  /* crear un nuevo cliente */
+  const createUserService = async (task) => {
     try {
-      const response = await createTaskRequest(task);
+      const response = await createUser(task);
       console.log(response);
     } catch (error) {
       console.error(error);
     }
   };
 
-  const deleteTask = async (id) => {
+  /* todos todos estas funciones sirven para las funciones de un empleado */
+  /* crear un empleado */
+  const createEmployeeService = async (task) => {
     try {
-      const response = await deleteTaskRequest(id);
-      setUser(users.filter((user) => user.id !== id));
+      const response = await createEmployee(task);
+      console.log(response);
     } catch (error) {
       console.error(error);
     }
   };
 
-  const getTask = async (id) => {
+  const getEmployeesService = async () => {
     try {
-      const response = await getTaskRequestOne(id);
+      const reponse = await getEmployee();
+      console.log(response);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  /* ambas funciones son para actualizar */
+  /* solicitar un empleado */
+  const getEmployeeService = async (id) => {
+    try {
+      const response = await getEmployeeRequestOne(id);
       return response.data;
     } catch (error) {
       console.error(error);
     }
   };
-
-  const updateTask = async (id, newFields) => {
+  /* actualizar un empleado */
+  const updateEmployeeService = async (id, newFields) => {
     try {
-      const response = await updateTaskRequest(id, newFields);
+      const response = await updateEmployeeRequest(id, newFields);
       console.log(response);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  /* eliminar un empleado */
+  const deleteEmployeeService = async (id) => {
+    try {
+      const response = await deleteEmployeeRequest(id);
+      setUser(users.filter((user) => user.id !== id));
     } catch (error) {
       console.error(error);
     }
@@ -60,10 +86,14 @@ export const ServiceContextProvider = ({ children }) => {
       value={{
         users,
         setUser,
-        deleteTask,
-        createTask,
-        getTask,
-        updateTask,
+        createUserService,
+        createEmployeeService,
+        getEmployeesService,
+        getEmployeeService,
+        updateEmployeeService,
+        deleteEmployeeService,
+        isModalOpen,
+        setIsModalOpen,
       }}
     >
       {children}

@@ -1,4 +1,5 @@
 import {useEffect} from "react";
+import Buttons from "./Buttons"
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -78,10 +79,11 @@ export const data = {
 
 const GestorSells = () => {
   return (
-    <div className="flex-1 bg-slate-700 h-1/2 p-5">
-      <div className="bg-slate-200 h-full">
+    <div className="h-screen lg:h-1/2 lg:flex-1 bg-slate-700 p-5 flex flex-col lg:flex-row">
+      <div className="h-full w-full lg:w-10/12 bg-slate-200">
         <Line options={options} data={data} />
       </div>
+      <Buttons />
     </div>
   );
 };
