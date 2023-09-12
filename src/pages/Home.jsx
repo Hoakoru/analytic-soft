@@ -9,7 +9,7 @@ function Home() {
   return (
     <>
       <Navbar currentPage="home" />
-      <div className="mt-16 flex flex-col container mx-auto">
+      <div className="mt-16 flex flex-col">
         <Element name="container">
           <Container />
         </Element>
@@ -20,6 +20,7 @@ function Home() {
           <Client />
         </Element>
       </div>
+
       <Footer />
     </>
   );
