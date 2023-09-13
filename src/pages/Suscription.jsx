@@ -8,7 +8,7 @@ const Suscription = () => {
   return (
     <>
       <Navbar currentPage="form" />
-      <div className="mt-16 relative">
+      <div className="pt-20 relative flex justify-center items-center min-h-screen">
         <Routes>
           <Route path="/" element={<FormRegister />} />
           <Route path="/plans" element={<Plans />} />

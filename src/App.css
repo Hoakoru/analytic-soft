@@ -1,11 +1,3 @@
-
-
-/* Estilo para las opciones seleccionadas */
-select option:checked {
-  background-color: #58215f; /* Cambia el color de fondo */
-  color: #eeeeee; /* Cambia el color del texto */
-}
-
 option{
-  background-color: rgb(73, 27, 117);
+  background-color: rgb(39, 15, 62);
 }

@@ -6,6 +6,7 @@ import {
   getEmployeeRequestOne,
   updateEmployeeRequest,
   deleteEmployeeRequest,
+  getCompanies,
 } from "../api/service.api";
 
 const ServiceContext = createContext();
@@ -20,6 +21,7 @@ export const useServices = () => {
 
 export const ServiceContextProvider = ({ children }) => {
   const [users, setUser] = useState([]);
+  const [company, setCompany] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   /* crear un nuevo cliente */
@@ -81,6 +83,15 @@ export const ServiceContextProvider = ({ children }) => {
     }
   };
 
+  /* solictar datos de empresas */
+  const getCompany = async () => {
+    try {
+      const result = await getCompanies();
+      setCompany(result.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
   return (
     <ServiceContext.Provider
       value={{
@@ -94,6 +105,8 @@ export const ServiceContextProvider = ({ children }) => {
         deleteEmployeeService,
         isModalOpen,
         setIsModalOpen,
+        getCompany,
+        company,
       }}
     >
       {children}

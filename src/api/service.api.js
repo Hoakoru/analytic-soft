@@ -27,7 +27,7 @@ export const getEmployeeRequestOne = async () =>
 /* actualizar empleado */
 export const updateEmployeeRequest = async (id, newFields) =>
   await axios.put(`http://localhost:4000/employee/${id}`, newFields);
-  
+
 /* listar ventas de cada empresa */
 export const getSell = async () =>
   await axios.get("http://localhost:4000/sell");
@@ -47,3 +47,7 @@ export const getSellRequestOne = async () =>
 /* actualizar venta */
 export const updateSellRequest = async (id, newFields) =>
   await axios.put(`http://localhost:4000/sell/${id}`, newFields);
+
+/* importar datos empresas */
+export const getCompanies = async () =>
+  await axios.get("https://jsonplaceholder.typicode.com/posts");
