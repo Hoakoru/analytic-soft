@@ -6,7 +6,7 @@ import { BrowserRouter } from "react-router-dom";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <BrowserRouter basename="/analytic-soft/">
+    <BrowserRouter /* basename="/analytic-soft/" */>
       <App />
     </BrowserRouter>
   </React.StrictMode>
