@@ -51,7 +51,7 @@ const Card = ({ image, title, style, description }) => {
   return (
     <div className="relative flex items-center bg-gradient-to-r from-gray-700 to-gray-600 p-5 rounded-3xl shadow-xl w-9/12 mx-auto">
       {location.pathname !== "/suscription/plans" && (
-        <div class="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 rounded-t-sm shadow-md shadow-slate-900 overflow-hidden h-40 w-40 p-2">
+        <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 rounded-full shadow-md shadow-slate-900 overflow-hidden h-40 w-40 p-4">
           <img src={image} alt="Imagen" />
         </div>
       )}

@@ -55,14 +55,14 @@ const Navbar = ({ currentPage }) => {
         currentPage === "form" ? (
           <Link
             to="/suscription/login"
-            className="text-white bg-blue-800 hover:bg-amber-700 py-2 px-4 rounded hidden lg:flex"
+            className="text-white bg-gradient-to-t from-indigo-700 to-sky-800 py-2 px-4 rounded hover:scale-105 ease-in-out duration-300 transform hidden lg:flex"
           >
             Iniciar Sesión
           </Link>
         ) : location.pathname !== "/application" ? (
           <Link
             to="/suscription/"
-            className="text-white bg-green-800 hover:bg-amber-700 py-2 px-4 rounded hidden lg:flex"
+            className="text-white bg-gradient-to-t from-green-700 to-lime-800 py-2 px-4 rounded hover:scale-105 ease-linear duration-200 transform hidden lg:flex"
           >
             Registrarse
           </Link>

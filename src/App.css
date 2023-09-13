@@ -1,6 +1,4 @@
-.shadow-custom-md {
-  box-shadow: inset 0 0 100px rgba(16, 21, 52, 0.5); /* Cambia los valores según tus preferencias */
-}
+
 
 /* Estilo para las opciones seleccionadas */
 select option:checked {
