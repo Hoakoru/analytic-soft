@@ -7,16 +7,11 @@ const Container = () => {
     <div className="relative">
       <div
         id="client"
-        className="flex-1 text-slate-300 flex flex-col lg:flex-row relative z-40"
+        className="flex-1 text-slate-300 flex flex-col lg:flex-row relative z-40 pb-10"
       >
-        {/* imagen */}
-
-        <div className="h-screen flex-1 flex justify-center items-center p-20">
-          <img src={img1} alt="Imagen representativa" />
-        </div>
         {/* primera parte del contenedor */}
-        <div className="h-screen flex-1 flex items-center justify-center p-12">
-          <div className="h-full w-full bg-gray-700 p-4 overflow-y-auto max-h-screen rounded-lg">
+        <div className="flex-1 p-12">
+          <div className="bg-gray-700 p-4 overflow-y-auto max-h-screen rounded-lg">
             <CommentCard foto={img2}>
               Lorem, ipsum dolor sit amet consectetur adipisicing elit.
               Consectetur voluptatem ad ratione dolorem praesentium fuga ut in
@@ -74,8 +69,13 @@ const Container = () => {
             </CommentCard>
           </div>
         </div>
+
+        {/* imagen */}
+        <div className="flex-1 flex justify-center items-center">
+          <img src={img1} alt="Imagen representativa" className="w-64 h-64" />
+        </div>
       </div>
-      <div className="absolute inset-0 bg-gradient-to-br from-yellow-600 via-violet-800 to-orange-950 z-0 "></div>
+      <div className="absolute inset-0 bg-gradient-to-br from-gray-800 via-indigo-950 to-black z-0 "></div>
     </div>
   );
 };

@@ -9,9 +9,9 @@ const CardGroup = ({ children }) => {
     <div className="relative">
       <div
         id="cardgroup"
-        className="lg:h-screen flex flex-col justify-center items-center relative z-40 pt-10 lg:pt-0"
+        className="lg:h-screen flex flex-col justify-center items-center relative z-40 pt-32 lg:pt-0"
       >
-        <div className="container mx-auto grid grid-cols-1 lg:grid-cols-3 lg:space-x-10 space-y-24 lg:space-y-0">
+        <div className="grid grid-cols-1 lg:grid-cols-3 space-y-24 lg:space-y-0 ">
           <Card
             image={img1}
             title={"Gestor de empleados"}
@@ -40,7 +40,7 @@ const CardGroup = ({ children }) => {
 
         <div className="flex justify-center lg:order-last my-5">{children}</div>
       </div>
-      <div className="absolute inset-0 bg-gradient-to-bl from-red-950 via-violet-800 to-yellow-600 z-0 "></div>
+      <div className="absolute inset-0 bg-gradient-to-bl from-stone-800 via-indigo-950 to-gray-800 z-0 "></div>
     </div>
   );
 };
@@ -49,16 +49,14 @@ const Card = ({ image, title, style, description }) => {
   const location = useLocation();
 
   return (
-    <div className="relative flex items-center mx-auto bg-gradient-to-r from-violet-950 to-purple-800 p-8 rounded-3xl shadow-xl max-w-sm text-center text-slate-300">
+    <div className="relative flex items-center bg-gradient-to-r from-gray-700 to-gray-600 p-5 rounded-3xl shadow-xl w-9/12 mx-auto">
       {location.pathname !== "/suscription/plans" && (
-        <img
-          src={image}
-          alt="Imagen"
-          className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-32 h-32 object-cover z-10 rounded-b-full shadow-2xl shadow-slate-900"
-        />
+        <div class="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 rounded-t-sm shadow-md shadow-slate-900 overflow-hidden h-40 w-40 p-2">
+          <img src={image} alt="Imagen" />
+        </div>
       )}
 
-      <div className="mt-16">
+      <div className="mt-16 text-center text-slate-300">
         <Section title={title} styleTitle={style}>
           {description}
         </Section>

@@ -6,6 +6,7 @@ import Footer from "../components/Footer";
 import { Element } from "react-scroll";
 
 function Home() {
+
   return (
     <>
       <Navbar currentPage="home" />
