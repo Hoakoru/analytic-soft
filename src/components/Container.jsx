@@ -1,4 +1,5 @@
 import img1 from "../assets/img/icon3.png";
+import Section from "./Section"
 
 const Container = () => {
   return (
@@ -28,15 +29,6 @@ const Container = () => {
         </div>
       </div>
       <div className="absolute inset-0 bg-gradient-to-br from-slate-700 via-indigo-950  to-stone-800 z-0"></div>
-    </div>
-  );
-};
-
-export const Section = ({ title, styleTitle, children }) => {
-  return (
-    <div className="mt-6">
-      <h2 className={styleTitle}>{title}</h2>
-      <p className="text-xl mt-5 p-5 italic   ">{children}</p>
     </div>
   );
 };

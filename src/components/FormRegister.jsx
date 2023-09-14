@@ -99,7 +99,7 @@ const FormRegister = () => {
         company: "",
         year_exp: "",
       }}
-      validationSchema={validationSchema}
+      /* validationSchema={validationSchema} */
       onSubmit={async (values, { resetForm }) => {
         /* createTask(values); */
         console.log(values);
