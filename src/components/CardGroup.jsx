@@ -17,7 +17,7 @@ const CardGroup = () => {
         <div className="flex flex-col items-center space-y-24 lg:flex-row lg:space-x-24 lg:space-y-0 lg:px-10 h-full">
           <Card image={img1} color={"red"} id={1}>
             {location.pathname !== "/suscription/plans" ? (
-              <Section title={"Gestor de empleados"}>
+              <Section title={"Gestor de empleados"} styleTitle="text-2xl font-semibold ">
                 Optimiza la productividad de tu equipo con nuestro potente
                 gestor de empleados en tiempo real. Obtén insights valiosos para
                 una gestión de recursos humanos más efectiva.
@@ -25,13 +25,13 @@ const CardGroup = () => {
             ) : (
               <InformationPlan title={"Plan Gratis"} price={"Prueba gratis"}>
                 <li>Gestor de empleados</li>
-                <li>Almacenamiento de 25TB</li>
+                <li>Almacenamiento de 100GB</li>
               </InformationPlan>
             )}
           </Card>
           <Card image={img2} color={"indigo"} id={2}>
             {location.pathname !== "/suscription/plans" ? (
-              <Section title={"Gestor de empleados"}>
+              <Section title={"Gestor de empleados"} styleTitle="text-2xl font-semibold ">
                 Optimiza la productividad de tu equipo con nuestro potente
                 gestor de empleados en tiempo real. Obtén insights valiosos para
                 una gestión de recursos humanos más efectiva.
@@ -40,13 +40,14 @@ const CardGroup = () => {
               <InformationPlan title={"Plan Plus+"} price={"70 BOB/mes"}>
                 <li>Gestor de empleados</li>
                 <li>Gestor de ventas</li>
-                <li>Almacenamiento 50TB</li>
+                <li>Consultor especialista</li>
+                <li>Almacenamiento 10TB</li>
               </InformationPlan>
             )}
           </Card>
           <Card image={img3} color={"orange"} id={3}>
             {location.pathname !== "/suscription/plans" ? (
-              <Section title={"Gestor de empleados"}>
+              <Section title={"Gestor de empleados"} styleTitle="text-2xl font-semibold ">
                 Optimiza la productividad de tu equipo con nuestro potente
                 gestor de empleados en tiempo real. Obtén insights valiosos para
                 una gestión de recursos humanos más efectiva.
@@ -55,7 +56,9 @@ const CardGroup = () => {
               <InformationPlan title={"Plan Premium"} price={"150 BOB/mes"}>
                 <li>Gestor de empleados</li>
                 <li>Gestor de ventas</li>
-                <li>Almacenamiento 100TB</li>
+                <li>Consultor especialista</li>
+                <li>Consultor de ventas</li>
+                <li>Almacenamiento 25TB</li>
               </InformationPlan>
             )}
           </Card>

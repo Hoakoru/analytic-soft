@@ -2,7 +2,7 @@ import img1 from "../assets/img/img1.jpeg"
 
 const Perfil = () => {
   return (
-    <div className="h-screen text-slate-200 text-3xl ">
+    <div className=" text-slate-200 text-3xl ">
       <div className="flex flex-col items-center justify-center p-5">
         <img
           src={img1}
