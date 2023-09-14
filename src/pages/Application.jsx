@@ -5,6 +5,7 @@ import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
 import CardModal from "../components/Modal";
 import FormUser from "../components/FormUser";
+import { Routes, Route } from "react-router-dom";
 
 const Application = () => {
   return (
@@ -27,7 +28,7 @@ const Application = () => {
         {/* ventana de los usuarios y ventas */}
         <div className="h-full lg:h-screen flex-col lg:w-3/4">
           <GestorUser />
-          <GestorSells />
+          {/* <GestorSells /> */}
         </div>
       </div>
       <Footer />

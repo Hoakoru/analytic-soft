@@ -1,8 +1,20 @@
+import img1 from "../assets/img/update.png"
+import img2 from "../assets/img/delete.png"
 import DataTable from "react-data-table-component";
 import Buttons from "./Buttons";
 import { useState } from "react";
+import { useServices } from "../context/ServiceContext";
 
 const GestorUser = () => {
+  const { setIsModalOpen } = useServices();
+  const handleUpdate = (row) => {
+   setIsModalOpen(true)
+  };
+
+  const handleDelete = (row) => {
+   
+  };
+
   const columns = [
     {
       name: "Ci",
@@ -23,6 +35,27 @@ const GestorUser = () => {
     {
       name: "Direccion",
       selector: (row) => row.direccion,
+    },
+    {
+      name: "Acciones",
+      cell: (row) => (
+        <>
+          <button onClick={() => handleUpdate(row)}>
+            <img
+              src={img1}
+              alt="button1.png"
+              className="h-12 w-12  hover:opacity-70 focus:opacity-80"
+            />
+          </button>
+          <button onClick={() => handleDelete(row)}>
+            <img
+              src={img2}
+              alt="button2.png"
+              className="h-10 w-10  hover:opacity-70 focus:opacity-80"
+            />
+          </button>
+        </>
+      ),
     },
   ];
 
@@ -96,7 +129,8 @@ const GestorUser = () => {
       apellido_p: "Brown",
       apellido_m: "Miller",
       direccion: "707 Cedar St",
-    },{
+    },
+    {
       ci: 11,
       nombre: "Jane",
       apellido_p: "Johnson",
@@ -179,7 +213,7 @@ const GestorUser = () => {
 
   return (
     <div className="h-screen lg:h-1/2 lg:flex-1 bg-slate-600 p-5 flex flex-col lg:flex-row">
-      <div className="h-full w-full lg:w-10/12 overflow-y-scroll">
+      <div className="h-full w-full lg:w-11/12 overflow-y-scroll">
         <DataTable
           columns={columns}
           data={records}
