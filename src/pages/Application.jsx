@@ -13,22 +13,22 @@ const Application = () => {
       <NavBar />
       <div className="flex flex-col lg:flex-row bg-slate-800 h-full mt-16">
         {/* perfil del ususario */}
-        <div className="lg:w-1/4 ">
+        <div className="lg:w-1/4 h-screen">
           <Perfil />
         </div>
 
         {/* ventana modal */}
-        <div className="h-screen">
+        <div className="h-full">
           <CardModal>
             <FormUser />
           </CardModal>
         </div>
 
         {/* ventana de los usuarios y ventas */}
-        <div className="h-full lg:h-screen flex-col lg:w-3/4">
+       {/*  <div className="h-full lg:h-screen flex-col lg:w-3/4">
           <GestorUser />
           <GestorSells />
-        </div>
+        </div> */}
       </div>
       <Footer />
     </>

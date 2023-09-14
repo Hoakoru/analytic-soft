@@ -16,7 +16,6 @@ const Suscription = () => {
         </Routes>
         <div className="absolute inset-0 bg-gradient-to-bl from-stone-800 via-indigo-950 to-gray-800 z-10"></div>
       </div>
-      
     </>
   );
 };
