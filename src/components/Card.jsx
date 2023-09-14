@@ -6,12 +6,12 @@ const Card = ({ image, color, id, children }) => {
   const [variable, setVariable] = useState(null);
   const extraStyles =
     location.pathname !== "/suscription/plans"
-      ? "bg-gradient-to-r from-gray-700 to-gray-600 p-5 pt-32 w-9/12"
+      ? "bg-gradient-to-r from-gray-700 to-gray-600 p-5 py-20 lg:w-1/5 "
       : `bg-transparent border border-${color}-500 px-8 h-96 `;
 
   return (
     <div
-      className={`relative flex items-center rounded-3xl shadow-xl ${extraStyles}`}
+      className={` relative flex items-center rounded-3xl shadow-xl ${extraStyles}`}
       onClick={() => {
         setVariable(id);
         console.log(id);
