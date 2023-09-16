@@ -14,10 +14,13 @@ const CardGroup = () => {
         id="cardgroup"
         className="min-h-screen flex flex-col justify-center items-center relative z-40 pt-32"
       >
-        <div className="flex flex-col items-center space-y-24 lg:flex-row lg:space-x-24 lg:space-y-0 lg:px-10 h-full">
+        <div className="flex flex-col justify-center items-center space-y-24 lg:flex-row lg:space-x-24 lg:space-y-0 lg:px-10 h-full">
           <Card image={img1} color={"red"} id={1}>
             {location.pathname !== "/suscription/plans" ? (
-              <Section title={"Gestor de empleados"} styleTitle="text-2xl font-semibold ">
+              <Section
+                title={"Gestor de empleados"}
+                styleTitle="text-2xl font-semibold "
+              >
                 Optimiza la productividad de tu equipo con nuestro potente
                 gestor de empleados en tiempo real. Obtén insights valiosos para
                 una gestión de recursos humanos más efectiva.
@@ -31,10 +34,14 @@ const CardGroup = () => {
           </Card>
           <Card image={img2} color={"indigo"} id={2}>
             {location.pathname !== "/suscription/plans" ? (
-              <Section title={"Gestor de empleados"} styleTitle="text-2xl font-semibold ">
-                Optimiza la productividad de tu equipo con nuestro potente
-                gestor de empleados en tiempo real. Obtén insights valiosos para
-                una gestión de recursos humanos más efectiva.
+              <Section
+                title={"Gestor de ventas"}
+                styleTitle="text-2xl font-semibold "
+              >
+                Maximice sus ventas con nuestro Gestor de Ventas impulsado por
+                Big Data, que ofrece análisis en tiempo real para comprender el
+                comportamiento del cliente y anticipar las tendencias del
+                mercado.
               </Section>
             ) : (
               <InformationPlan title={"Plan Plus+"} price={"70 BOB/mes"}>
@@ -47,10 +54,11 @@ const CardGroup = () => {
           </Card>
           <Card image={img3} color={"orange"} id={3}>
             {location.pathname !== "/suscription/plans" ? (
-              <Section title={"Gestor de empleados"} styleTitle="text-2xl font-semibold ">
-                Optimiza la productividad de tu equipo con nuestro potente
-                gestor de empleados en tiempo real. Obtén insights valiosos para
-                una gestión de recursos humanos más efectiva.
+              <Section
+                title={"Almacenamiento de datos"}
+                styleTitle="text-2xl font-semibold "
+              >
+                Garantice la disponibilidad y seguridad de sus datos con nuestra solución de Almacenamiento de Datos, que ofrece escalabilidad y recuperación ante desastres para respaldar sus iniciativas de Big Data.
               </Section>
             ) : (
               <InformationPlan title={"Plan Premium"} price={"150 BOB/mes"}>
