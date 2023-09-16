@@ -28,7 +28,7 @@ const Application = () => {
         {/* ventana de los usuarios y ventas */}
         <div className="h-full lg:h-screen flex-col lg:w-3/4">
           <GestorUser />
-          {/* <GestorSells /> */}
+          <GestorSells />
         </div>
       </div>
       <Footer />
