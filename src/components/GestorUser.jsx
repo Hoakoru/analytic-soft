@@ -1,5 +1,5 @@
-import img1 from "../assets/img/update.png"
-import img2 from "../assets/img/delete.png"
+import img1 from "../assets/img/update.png";
+import img2 from "../assets/img/delete.png";
 import DataTable from "react-data-table-component";
 import { useState } from "react";
 import { useServices } from "../context/ServiceContext";
@@ -7,12 +7,10 @@ import { useServices } from "../context/ServiceContext";
 const GestorUser = () => {
   const { setIsModalOpen } = useServices();
   const handleUpdate = (row) => {
-   setIsModalOpen(true)
+    setIsModalOpen(true);
   };
 
-  const handleDelete = (row) => {
-   
-  };
+  const handleDelete = (row) => {};
 
   const columns = [
     {
@@ -212,8 +210,9 @@ const GestorUser = () => {
 
   return (
     <div className="h-full lg:h-1/2 lg:mx-5 pb-3">
-      <div className="h-full overflow-y-scroll rounded-lg shadow-md shadow-black">
+      <div className="h-full overflow-y-scroll rounded-md shadow-md shadow-black">
         <DataTable
+          title={"Datos de los empleados"}
           columns={columns}
           data={records}
           selectableRows

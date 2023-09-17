@@ -1,37 +1,26 @@
 import Modal from "react-modal";
 import { useServices } from "../context/ServiceContext";
-import { useRef, useEffect } from 'react';
-
-Modal.setAppElement("#root"); // Indica dónde se debe renderizar la ventana modal
+import { useRef } from 'react';
 
 const CardModal = ({ children }) => {
-  const { isModalOpen,setIsModalOpen } = useServices();
+  const { isModalOpen, setIsModalOpen } = useServices();
 
-  const containerRef = useRef(null);
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
 
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (containerRef.current && !containerRef.current.contains(event.target)) {
-        setIsModalOpen(false)
-       
-        console.log("fuera del contenedor")
-      }
-    };
-
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
-  }, []);
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
 
   return (
-    <div ref={containerRef} className="h-full">
+    <div className="h-full">
       <Modal
         isOpen={isModalOpen}
-        overlayClassName={`fixed inset-0 flex items-center justify-center z-50`}
-        className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 rounded-3xl shadow-lg shadow-black outline-none w-11/12 lg:w-1/4 bg-gradient-to-br from-slate-900 to-slate-700 flex flex-col justify-center items-center"
+        onRequestClose={closeModal}
+        overlayClassName={`fixed inset-0 z-50`}
+        className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 rounded-3xl shadow-lg shadow-black w-11/12 lg:w-1/2 bg-gradient-to-br from-slate-900 to-slate-700 mt-5"
       >
-        
         {children}
       </Modal>
     </div>

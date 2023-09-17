@@ -7,7 +7,7 @@ const Container = () => {
     <div className="relative">
       <div
         id="client"
-        className="flex flex-col lg:flex-row relative z-40"
+        className="flex flex-col lg:flex-row relative z-30"
       >
         {/* primera parte del contenedor */}
         <div className="flex-1 p-12">

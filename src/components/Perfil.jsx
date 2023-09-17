@@ -23,8 +23,12 @@ const Perfil = () => {
       </div>
       <div className="flex flex-col">
 
-      <Buttons />
-      <Buttons />
+      <Buttons >
+        Registrar empleados
+      </Buttons >
+      <Buttons >
+        Registrar ventas
+      </Buttons >
       </div>
     </div>
   );

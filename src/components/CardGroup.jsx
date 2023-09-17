@@ -25,7 +25,7 @@ const CardGroup = () => {
     <div className="relative">
       <div
         id="cardgroup"
-        className="min-h-screen flex flex-col justify-center items-center relative z-40 pt-32 "
+        className="min-h-screen flex flex-col justify-center items-center relative z-30 pt-32 "
       >
         <div className="flex flex-col justify-center items-center space-y-24 lg:flex-row lg:space-x-24 lg:space-y-0 lg:px-10 h-full">
           <div

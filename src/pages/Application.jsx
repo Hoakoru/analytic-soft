@@ -4,8 +4,8 @@ import Perfil from "../components/Perfil";
 import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
 import CardModal from "../components/Modal";
-import FormUser from "../components/FormUser";
 import { Routes, Route } from "react-router-dom";
+import FormEmployee from "../components/FormEmployee";
 
 const Application = () => {
   return (
@@ -21,13 +21,13 @@ const Application = () => {
         {/* ventana modal */}
 
         <CardModal>
-          <FormUser />
+          <FormEmployee />
         </CardModal>
 
         {/* ventana de los usuarios y ventas */}
         <div className="h-full flex flex-col flex-1 relative z-30">
-          <GestorUser />
-          <GestorSells />
+          {/* <GestorUser />
+          <GestorSells /> */}
         </div>
         <div className="absolute inset-0 bg-gradient-to-tl from-rose-700 via-purple-950 to-slate-950 z-0"></div>
       </div>

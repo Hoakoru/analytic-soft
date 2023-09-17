@@ -17,7 +17,7 @@ const Navbar = ({ currentPage }) => {
   };
 
   return (
-    <nav className="fixed top-0 z-50 w-full flex items-center justify-between bg-gray-800 p-2 h-16">
+    <nav className="fixed top-0 z-40 w-full flex items-center justify-between bg-gray-800 p-2 h-16">
       {/* boton del offcanvas */}
       <button className="text-white lg:hidden" onClick={toggleOffcanvas}>
         <svg
@@ -110,7 +110,7 @@ const Offcanvas = ({ isOpen, onClose, currentPage }) => {
   return (
     /* contenido de offcanvas */
     <div
-      className={`fixed flex-col p-4 top-0 left-0 w-64 h-full bg-gray-800   ${
+      className={`fixed flex-col p-4 top-0 left-0 w-64 h-full bg-gray-800  ${
         isOpen ? "translate-x-0" : "-translate-x-full"
       } transform transition-transform duration-300 ease-in-out`}
     >

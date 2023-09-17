@@ -52,7 +52,7 @@ const FormLogin = () => {
       }}
     >
       {() => (
-        <Form className="w-full lg:w-1/3 bg-slate-900 shadow-md shadow-gray-900 rounded-3xl mx-5 lg:mx-auto pt-6 px-10 pb-8 text-white bold space-y-6 relative z-40 -mt-6">
+        <Form className="w-full lg:w-1/3 bg-slate-900 shadow-md shadow-gray-900 rounded-3xl mx-5 lg:mx-auto pt-6 px-10 pb-8 text-white bold space-y-6 relative z-30 -mt-6">
           {formSend && (
             <div className="border-2 border-red-800 text-red-600 text-lg font-semibold p-2 text-center">
               ¡Datos incorrectos!

@@ -6,7 +6,7 @@ const Container = () => {
     <div className="relative">
       <div
         id="container"
-        className="flex flex-col lg:flex-row text-slate-300 z-40 relative "
+        className="flex flex-col lg:flex-row text-slate-300 z-30 relative "
       >
         {/* primera parte del contenedor */}
 
