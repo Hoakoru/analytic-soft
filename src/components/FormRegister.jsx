@@ -99,7 +99,7 @@ const FormRegister = () => {
         company: "",
         year_exp: "",
       }}
-      /* validationSchema={validationSchema} */
+      validationSchema={validationSchema}
       onSubmit={async (values, { resetForm }) => {
         setUser(values);
         resetForm();
@@ -107,7 +107,7 @@ const FormRegister = () => {
       }}
     >
       {() => (
-        <Form className="lg:w-6/12 bg-slate-800 border border-sky-500  rounded-3xl mx-4 lg:mx-auto my-10 p-10 text-white bold space-y-5 relative z-40">
+        <Form className="lg:w-6/12 bg-slate-800 border border-sky-500 rounded-3xl mx-4 lg:mx-auto my-10 p-10 text-white bold space-y-5 shadow-lg shadow-gray-900 relative z-40">
           <h2 className="text-blue-400 font-bold text-3xl text-start mb-10">
             Llena los campos...
           </h2>

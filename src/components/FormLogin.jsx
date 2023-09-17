@@ -11,9 +11,9 @@ const FormLogin = () => {
 
   //en las siguinetes se puede ver las clases
   const fieldClasses =
-    " border-b border-sky-600  w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline text-sky-200 bg-gradient-to-r from-slate-800 to-slate-600";
+    "border-b border-sky-600 w-full py-2 px-3 leading-tight text-sky-200 bg-gradient-to-l from-slate-900 to-sky-800 ronded rounded-md";
   const buttonClasses =
-    "bg-gradient-to-b from-slate-800 to-indigo-950 hover:from-indigo-900 hover:to-indigo-950 text-white tracking-widest font-semibold py-4 px-4 mt-4 rounded-xl w-full opacity-80 shadow-lg";
+    "bg-gradient-to-b from-sky-900 to-blue-900 hover:from-sky-800 hover:to-blue-900 text-white tracking-widest font-semibold py-2 w-full mt-2 rounded-2xl opacity-80 shadow-md shadow-black";
 
   const validationSchema = Yup.object({
     email: Yup.string()
@@ -52,13 +52,13 @@ const FormLogin = () => {
       }}
     >
       {() => (
-        <Form className="w-full lg:w-1/3 bg-gradient-to-tr from-transparent via-transparent to-gray-800 opacity-90 shadow-md shadow-indigo-900 rounded-3xl mx-5 lg:mx-auto my-10 pt-10 px-10 pb-16 text-white bold space-y-6 relative z-40 ">
+        <Form className="w-full lg:w-1/3 bg-slate-900 shadow-md shadow-gray-900 rounded-3xl mx-5 lg:mx-auto pt-6 px-10 pb-8 text-white bold space-y-6 relative z-40 -mt-6">
           {formSend && (
-            <div className="border border-red-800 rounded-2xl text-sky-200 text-lg mt-1 mb-4 text-center">
+            <div className="border-2 border-red-800 text-red-600 text-lg font-semibold p-2 text-center">
               ¡Datos incorrectos!
             </div>
           )}
-          <div className="w-40 h-40 mx-auto shadow-lg shadow-blue-900 rounded-full opacity-80">
+          <div className="w-40 h-40 mx-auto shadow-lg shadow-black rounded-full opacity-80">
             <img src={img1} alt="user.png" />
           </div>
           <div className="mb-4">

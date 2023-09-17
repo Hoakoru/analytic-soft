@@ -1,5 +1,5 @@
 import img1 from "../assets/img/img1.jpeg";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { Link as ScrollLink } from "react-scroll";
 
@@ -7,6 +7,10 @@ const Navbar = ({ currentPage }) => {
   const [isOffcanvasOpen, setIsOffcanvasOpen] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
+  
+  useEffect(()=>{
+    setIsOffcanvasOpen(false)
+  },[navigate])
 
   const toggleOffcanvas = () => {
     setIsOffcanvasOpen(!isOffcanvasOpen);
@@ -51,29 +55,27 @@ const Navbar = ({ currentPage }) => {
       )}
 
       {/* Botón */}
-      {location.pathname !== "/suscription/login" ? (
-        currentPage === "form" ? (
-          <Link
-            to="/suscription/login"
-            className="text-white bg-gradient-to-t from-indigo-700 to-sky-800 py-2 px-4 rounded hover:scale-105 ease-in-out duration-300 transform hidden lg:flex"
-          >
-            Iniciar Sesión
-          </Link>
-        ) : location.pathname !== "/application" ? (
-          <Link
-            to="/suscription/"
-            className="text-white bg-gradient-to-t from-green-700 to-lime-800 py-2 px-4 rounded hover:scale-105 ease-linear duration-200 transform hidden lg:flex"
-          >
-            Registrarse
-          </Link>
-        ) : (
-          <Link
-            to="/"
-            className="text-white bg-slate-800 hover:bg-amber-700 py-2 px-4 rounded hidden lg:flex"
-          >
-            Cerrar Sesion
-          </Link>
-        )
+      {location.pathname === "/application" ? (
+        <Link
+          to="/"
+          className="text-white bg-slate-800 hover:bg-amber-700 py-2 px-4 rounded-xl shadow-md shadow-gray-800 hidden lg:flex"
+        >
+          Cerrar Sesion
+        </Link>
+      ): location.pathname !== "/suscription/login" ? (
+        <Link
+          to="/suscription/login"
+          className="text-white bg-blue-900 py-2 px-4 rounded-xl shadow-md shadow-gray-800 hover:scale-105 ease-in-out duration-300 transform hidden lg:flex"
+        >
+          Iniciar Sesión
+        </Link>
+      ) : location.pathname !== "/suscription/" ? (
+        <Link
+          to="/suscription/"
+          className="text-white bg-green-800 py-2 px-4 rounded-xl shadow-md shadow-gray-800 hover:scale-105 ease-linear duration-200 transform hidden lg:flex"
+        >
+          Registrarse
+        </Link>
       ) : null}
 
       <Offcanvas
@@ -153,32 +155,31 @@ const Offcanvas = ({ isOpen, onClose, currentPage }) => {
           </li>
         </ul>
       )}
+      
       {/* boton de inicio sesion */}
       <div className="mt-5 flex justify-center">
-        {location.pathname !== "/suscription/login" ? (
-          currentPage === "form" ? (
-            <Link
-              to="/suscription/login"
-              className="text-white bg-blue-800 hover:bg-amber-700 py-2 px-4 rounded lg:flex "
-            >
-              Iniciar Sesión
-            </Link>
-          ) : location.pathname !== "/application" ? (
-            <Link
-              to="/suscription/"
-              className="text-white bg-green-800 hover:bg-amber-700 py-2 px-4 rounded lg:flex "
-            >
-              Registrarse
-            </Link>
-          ) : (
-            <Link
-              to="/"
-              className="text-white bg-slate-800 hover:bg-amber-700 py-2 px-4 rounded lg:flex "
-            >
-              Cerrar Sesion
-            </Link>
-          )
-        ) : null}
+      {location.pathname === "/application" ? (
+        <Link
+          to="/"
+          className="text-white bg-slate-800 hover:bg-amber-700 py-2 px-4 rounded-xl shadow-md shadow-gray-800"
+        >
+          Cerrar Sesion
+        </Link>
+      ): location.pathname !== "/suscription/login" ? (
+        <Link
+          to="/suscription/login"
+          className="text-white bg-blue-900 py-2 px-4 rounded-xl shadow-md shadow-gray-800"
+        >
+          Iniciar Sesión
+        </Link>
+      ) : location.pathname !== "/suscription/" ? (
+        <Link
+          to="/suscription/"
+          className="text-white bg-green-800 py-2 px-4 rounded-xl shadow-md shadow-gray-800"
+        >
+          Registrarse
+        </Link>
+      ) : null}
       </div>
     </div>
   );

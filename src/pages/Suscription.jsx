@@ -14,7 +14,7 @@ const Suscription = () => {
           <Route path="/plans" element={<Plans />} />
           <Route path="/login" element={<FormLogin />} />
         </Routes>
-        <div className="absolute inset-0 bg-gradient-to-bl from-stone-800 via-indigo-950 to-gray-800 z-10"></div>
+        <div className="absolute inset-0 bg-gradient-to-bl from-stone-700 via-indigo-950 to-gray-700 z-10"></div>
       </div>
     </>
   );

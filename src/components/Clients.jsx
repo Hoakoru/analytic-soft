@@ -7,11 +7,11 @@ const Container = () => {
     <div className="relative">
       <div
         id="client"
-        className="flex-1 text-slate-300 flex flex-col lg:flex-row relative z-40 pb-10"
+        className="flex flex-col lg:flex-row relative z-40"
       >
         {/* primera parte del contenedor */}
         <div className="flex-1 p-12">
-          <div className="bg-gray-700 p-4 overflow-y-auto max-h-screen rounded-lg">
+          <div className="bg-gray-700 p-4 overflow-y-auto h-screen rounded-lg">
             <CommentCard foto={img2}>
               Lorem, ipsum dolor sit amet consectetur adipisicing elit.
               Consectetur voluptatem ad ratione dolorem praesentium fuga ut in
@@ -71,11 +71,11 @@ const Container = () => {
         </div>
 
         {/* imagen */}
-        <div className="flex-1 flex justify-center items-center">
-          <img src={img1} alt="Imagen representativa" className="w-64 h-64" />
+        <div className="flex-1">
+          <img src={img1} alt="Imagen representativa" className="object-contain p-20" />
         </div>
       </div>
-      <div className="absolute inset-0 bg-gradient-to-br from-gray-800 via-indigo-950 to-black z-0 "></div>
+      <div className="absolute inset-0 bg-gradient-to-br from-gray-800 via-indigo-950 to-black z-0"></div>
     </div>
   );
 };
@@ -87,10 +87,10 @@ const CommentCard = ({ children, foto }) => {
         <img
           src={foto}
           alt="Imagen representativa"
-          className="object-cover rounded-full border border-pink-300"
+          className="object-contain rounded-full border shadow-md shadow-gray-900"
         />
       </div>
-      <div className="flex-1 rounded-lg shadow-sm shadow-violet-800 p-3 bg-slate-900">
+      <div className="flex-1 rounded-lg shadow-md shadow-gray-900 p-3 bg-gray-900 text-sky-200">
         <p>{children}</p>
       </div>
     </div>
