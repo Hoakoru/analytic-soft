@@ -1,21 +1,30 @@
-import img1 from "../assets/img/img1.jpeg"
+import img1 from "../assets/img/img1.jpeg";
+import Buttons from "./Buttons";
 
 const Perfil = () => {
   return (
-    <div className=" text-slate-200 text-3xl ">
-      <div className="flex flex-col items-center justify-center p-5">
+    <div className="flex flex-col items-center justify-center bg-transparent rounded-2xl shadow-sm shadow-black text-slate-200 space-y-7 p-3 h-full">
+      <div className="h-32 w-32">
         <img
           src={img1}
           alt="Imagen de usuario"
-          className="w-32 h-32 rounded-full mb-4"
+          className="object-contain rounded-full"
         />
-        <h1 className="text-2xl font-semibold">Nombre del Jefe de Empresa</h1>
-        <p className="text-lg text-gray-500">Nombre de la Empresa</p>
-        <div className="mt-4">
-          <p className="text-gray-500">Correo: ejemplo@empresa.com</p>
+      </div>
+      <div className="text-center space-y-3">
+        <span className="text-end" >Bienvenido!!!</span>
+        <h2 className="text-lg font-semibold">Juan Diego Gutierrez Quintana</h2>
+        <p className="text-lg text-gray-500">Analytic Soft</p>
+        <div>
+          <p className="text-gray-500">Correo: jorgejoaquinmv@gmail.com</p>
           <p className="text-gray-500">Años de Experiencia: 10 años</p>
           {/* Agrega más detalles de la empresa aquí */}
         </div>
+      </div>
+      <div className="flex flex-col">
+
+      <Buttons />
+      <Buttons />
       </div>
     </div>
   );

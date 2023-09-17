@@ -58,7 +58,7 @@ const Navbar = ({ currentPage }) => {
       {location.pathname === "/application" ? (
         <Link
           to="/"
-          className="text-white bg-slate-800 hover:bg-amber-700 py-2 px-4 rounded-xl shadow-md shadow-gray-800 hidden lg:flex"
+          className="text-white bg-slate-950 hover:bg-slate-700 py-2 px-4 rounded-xl shadow-md shadow-gray-800 hidden lg:flex"
         >
           Cerrar Sesion
         </Link>

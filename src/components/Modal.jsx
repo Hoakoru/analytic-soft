@@ -28,7 +28,7 @@ const CardModal = ({ children }) => {
     <div ref={containerRef} className="h-full">
       <Modal
         isOpen={isModalOpen}
-        overlayClassName={`fixed inset-0 flex items-center justify-center`}
+        overlayClassName={`fixed inset-0 flex items-center justify-center z-50`}
         className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 rounded-3xl shadow-lg shadow-black outline-none w-11/12 lg:w-1/4 bg-gradient-to-br from-slate-900 to-slate-700 flex flex-col justify-center items-center"
       >
         

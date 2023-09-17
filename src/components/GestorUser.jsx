@@ -1,7 +1,6 @@
 import img1 from "../assets/img/update.png"
 import img2 from "../assets/img/delete.png"
 import DataTable from "react-data-table-component";
-import Buttons from "./Buttons";
 import { useState } from "react";
 import { useServices } from "../context/ServiceContext";
 
@@ -212,8 +211,8 @@ const GestorUser = () => {
   };
 
   return (
-    <div className="h-screen lg:h-1/2 lg:flex-1 bg-slate-600 p-5 flex flex-col lg:flex-row">
-      <div className="h-full w-full lg:w-11/12 overflow-y-scroll">
+    <div className="h-full lg:h-1/2 lg:mx-5 pb-3">
+      <div className="h-full overflow-y-scroll rounded-lg shadow-md shadow-black">
         <DataTable
           columns={columns}
           data={records}
@@ -224,7 +223,6 @@ const GestorUser = () => {
           persistTableHead
         />
       </div>
-      <Buttons />
     </div>
   );
 };
