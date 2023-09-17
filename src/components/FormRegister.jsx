@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useServices } from "../context/ServiceContext";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 
@@ -42,7 +42,7 @@ const validationSchema = Yup.object({
 
 const FormRegister = () => {
   /* importacion de los metodos mediante el contexto */
-  const { createTask, getCompany, company } = useServices();
+  const { user, setUser, getCompany, company } = useServices();
   const styleError = "text-red-500 text-md mt-1   italic tracking-tight";
   const navigate = useNavigate(); /* impotrtacion de navegacion */
   const years = [3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
@@ -99,16 +99,15 @@ const FormRegister = () => {
         company: "",
         year_exp: "",
       }}
-      validationSchema={validationSchema}
+      /* validationSchema={validationSchema} */
       onSubmit={async (values, { resetForm }) => {
-        /* createTask(values); */
-        console.log(values);
+        setUser(values);
         resetForm();
         navigate("/suscription/plans"); // Ajusta esto según tu navegación
       }}
     >
       {() => (
-        <Form className="lg:w-6/12 bg-gradient-to-br from-gray-800 to-gray-600 rounded-3xl mx-4 lg:mx-auto my-10 p-10 text-white bold space-y-5 relative z-40">
+        <Form className="lg:w-6/12 bg-slate-800 border border-sky-500  rounded-3xl mx-4 lg:mx-auto my-10 p-10 text-white bold space-y-5 relative z-40">
           <h2 className="text-blue-400 font-bold text-3xl text-start mb-10">
             Llena los campos...
           </h2>
@@ -213,13 +212,19 @@ const FormRegister = () => {
             </div>
           </div>
 
-          <div className="flex items-center justify-center pt-5">
+          <div className="flex flex-col lg:flex-row items-center justify-center space-y-2 lg:space-x-2 lg:space-y-0">
             <button
               type="submit"
-              className="bg-gradient-to-bl from-blue-800 to-blue-950 hover:from-indigo-600 hover:to-indigo-800 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full lg:w-1/4"
+              className="bg-blue-900 hover:bg-blue-800 text-white font-bold py-2 px-8 rounded-xl shadow-md shadow-gray-900 w-full lg:w-1/4  "
             >
               Siguiente
             </button>
+            <Link
+              to={"/"}
+              className="bg-rose-900 hover:bg-rose-800 text-white text-center font-bold py-2 px-8 rounded-xl shadow-md shadow-gray-900 w-full lg:w-1/4 "
+            >
+              Volver
+            </Link>
           </div>
         </Form>
       )}

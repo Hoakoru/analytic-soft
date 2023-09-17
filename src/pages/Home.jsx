@@ -5,7 +5,7 @@ import Client from "../components/Clients";
 import Footer from "../components/Footer";
 import { Element } from "react-scroll";
 
-function Home() {
+const Home = () => {
   return (
     <>
       <Navbar currentPage="home" />
@@ -20,10 +20,9 @@ function Home() {
           <Client />
         </Element>
       </div>
-
       <Footer />
     </>
   );
-}
+};
 
 export default Home;

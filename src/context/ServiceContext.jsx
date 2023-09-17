@@ -20,8 +20,9 @@ export const useServices = () => {
 };
 
 export const ServiceContextProvider = ({ children }) => {
-  const [users, setUser] = useState([]);
+  const [user, setUser] = useState([]);
   const [company, setCompany] = useState([]);
+  const [plan, setPlan] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   /* crear un nuevo cliente */
@@ -77,7 +78,7 @@ export const ServiceContextProvider = ({ children }) => {
   const deleteEmployeeService = async (id) => {
     try {
       const response = await deleteEmployeeRequest(id);
-      setUser(users.filter((user) => user.id !== id));
+      setUser(user.filter((user) => user.id !== id));
     } catch (error) {
       console.error(error);
     }
@@ -95,7 +96,7 @@ export const ServiceContextProvider = ({ children }) => {
   return (
     <ServiceContext.Provider
       value={{
-        users,
+         user,
         setUser,
         createUserService,
         createEmployeeService,
@@ -107,6 +108,8 @@ export const ServiceContextProvider = ({ children }) => {
         setIsModalOpen,
         getCompany,
         company,
+        plan,
+        setPlan
       }}
     >
       {children}

@@ -3,7 +3,7 @@ import { defineConfig } from "file:///C:/Users/PC/OneDrive/Documentos/3er%20a%C3
 import react from "file:///C:/Users/PC/OneDrive/Documentos/3er%20a%C3%B1o/PROYECTO-emprendimiento/analytic-soft/node_modules/@vitejs/plugin-react/dist/index.mjs";
 var vite_config_default = defineConfig({
   plugins: [react()],
-  base: "https://hoakoru.github.io/analytic-soft/"
+  /* base: "https://hoakoru.github.io/analytic-soft/" */
 });
 export {
   vite_config_default as default
