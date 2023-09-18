@@ -1,14 +1,19 @@
 import React, { useState, useEffect } from "react";
 import { useServices } from "../context/ServiceContext";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 
 const FormSales = () => {
   /* logica de mostra emnsajes en el formulario */
   const [formSend, onChangeFormeSend] = useState(false);
+  const [s, setS] = useState({
+    producto: "",
+    venta: 0,
+  });
   /* importacion de los metodos mediante el contexto */
-  const { createTask, setIsModalOpen,sale } = useServices();
+  const { createTask, setIsModalOpen, sale, setSale } = useServices();
   const navigate = useNavigate(); /* impotrtacion de navegacion */
+  const params = useParams();
 
   const inputStyles = `
    appearance-none border border-blue-900 bg-cyan-950 rounded w-full py-2 px-3 leading-tight focus:outline-none  focus:border-red-500 text-white
@@ -16,10 +21,29 @@ const FormSales = () => {
   const labelStyles = "font-extralight text-sky-200";
   const errorStyles = "text-red-400 font-extralight text-md mt-1";
 
+  useEffect(() => {
+    const loadSale = async () => {
+      if (params.id) {
+        /* const service = await getSaleService(params.id); */
+        /* setSale({
+        id: service.id,
+        productos: service.productos,
+        venta: service.venta,
+      }); */
+        const saleToLoad = sale.find((item) => item.id !== params.id);
+        if (saleToLoad) {
+          setS(saleToLoad);
+        }
+      }
+    };
+    loadSale();
+  });
+
   return (
     <>
       <Formik
-        initialValues={sale}
+        initialValues={s}
+        enableReinitialize={true}
         onSubmit={async (values, { resetForm }) => {
           /* createTask(values); */
           console.log(values);
@@ -35,13 +59,13 @@ const FormSales = () => {
 
             {/* producto */}
             <div>
-              <label htmlFor="producto" className={labelStyles}>
+              <label htmlFor="productos" className={labelStyles}>
                 Nombre de Producto:
               </label>
               <Field
                 type="text"
-                id="producto"
-                name="producto"
+                id="productos"
+                name="productos"
                 className={inputStyles}
               />
               <ErrorMessage
@@ -57,7 +81,7 @@ const FormSales = () => {
                 Monto de venta:
               </label>
               <Field
-                type="text"
+                type="number"
                 id="venta"
                 name="venta"
                 className={inputStyles}

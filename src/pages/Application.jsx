@@ -30,140 +30,140 @@ const Application = () => {
   const dataE = [
     {
       ci: 1,
-      nombre: "John",
+      name: "John",
       apellido_p: "Doe",
       apellido_m: "Smith",
       direccion: "123 Main St",
     },
     {
       ci: 2,
-      nombre: "Jane",
+      name: "Jane",
       apellido_p: "Smith",
       apellido_m: "Doe",
       direccion: "456 Elm St",
     },
     {
       ci: 3,
-      nombre: "Michael",
+      name: "Michael",
       apellido_p: "Johnson",
       apellido_m: "Brown",
       direccion: "789 Oak St",
     },
     {
       ci: 4,
-      nombre: "Emily",
+      name: "Emily",
       apellido_p: "Davis",
       apellido_m: "Wilson",
       direccion: "101 Pine St",
     },
     {
       ci: 5,
-      nombre: "Robert",
+      name: "Robert",
       apellido_p: "Martinez",
       apellido_m: "Lee",
       direccion: "202 Maple St",
     },
     {
       ci: 6,
-      nombre: "Jennifer",
+      name: "Jennifer",
       apellido_p: "Garcia",
       apellido_m: "White",
       direccion: "303 Cedar St",
     },
     {
       ci: 7,
-      nombre: "David",
+      name: "David",
       apellido_p: "Hernandez",
       apellido_m: "Smith",
       direccion: "404 Birch St",
     },
     {
       ci: 8,
-      nombre: "Mary",
+      name: "Mary",
       apellido_p: "Lopez",
       apellido_m: "Johnson",
       direccion: "505 Redwood St",
     },
     {
       ci: 9,
-      nombre: "Daniel",
+      name: "Daniel",
       apellido_p: "Gonzalez",
       apellido_m: "Davis",
       direccion: "606 Willow St",
     },
     {
       ci: 10,
-      nombre: "Patricia",
+      name: "Patricia",
       apellido_p: "Brown",
       apellido_m: "Miller",
       direccion: "707 Cedar St",
     },
     {
       ci: 11,
-      nombre: "Jane",
+      name: "Jane",
       apellido_p: "Johnson",
       apellido_m: "Williams",
       direccion: "456 Elm St",
     },
     {
       ci: 12,
-      nombre: "Michael",
+      name: "Michael",
       apellido_p: "Davis",
       apellido_m: "Brown",
       direccion: "789 Oak St",
     },
     {
       ci: 13,
-      nombre: "Emily",
+      name: "Emily",
       apellido_p: "Martinez",
       apellido_m: "Lee",
       direccion: "101 Pine St",
     },
     {
       ci: 14,
-      nombre: "Robert",
+      name: "Robert",
       apellido_p: "Garcia",
       apellido_m: "White",
       direccion: "202 Maple St",
     },
     {
       ci: 15,
-      nombre: "Jennifer",
+      name: "Jennifer",
       apellido_p: "Hernandez",
       apellido_m: "Smith",
       direccion: "303 Cedar St",
     },
     {
       ci: 16,
-      nombre: "David",
+      name: "David",
       apellido_p: "Lopez",
       apellido_m: "Johnson",
       direccion: "404 Birch St",
     },
     {
       ci: 17,
-      nombre: "Mary",
+      name: "Mary",
       apellido_p: "Gonzalez",
       apellido_m: "Davis",
       direccion: "505 Redwood St",
     },
     {
       ci: 18,
-      nombre: "Daniel",
+      name: "Daniel",
       apellido_p: "Brown",
       apellido_m: "Miller",
       direccion: "606 Willow St",
     },
     {
       ci: 19,
-      nombre: "Patricia",
+      name: "Patricia",
       apellido_p: "Clark",
       apellido_m: "Moore",
       direccion: "707 Cedar St",
     },
     {
       ci: 20,
-      nombre: "Richard",
+      name: "Richard",
       apellido_p: "Wright",
       apellido_m: "Anderson",
       direccion: "808 Oak St",
@@ -206,28 +206,11 @@ const Application = () => {
     loadEmployee(); */
   };
 
-  const handleDelete = (row) => {
-  };
+  const handleDelete = (row) => {};
 
   const handleUpdateV = (row) => {
     setIsModalOpen(true);
-    navigate(`/application/sales/update/${row.ci}`);
-    /* const loadSale = async () => {
-      if (params.id) { 
-        const service = await getSaleService(params.id);
-        setSale({
-          id: service.id,
-          productos: service.productos,
-          venta: service.venta,
-        });
-        setSale(
-          sale.map((s) =>
-            s.id === params.id ? { ...s } : task
-          )
-        );
-      }
-    };
-    loadSale(); */
+    navigate(`/application/sales/update/${row.id}`);
   };
 
   const handleDeleteV = (row) => {};
@@ -239,7 +222,7 @@ const Application = () => {
     },
     {
       name: "Nombre",
-      selector: (row) => row.nombre,
+      selector: (row) => row.name,
     },
     {
       name: "Apellido Paterno",
@@ -332,7 +315,7 @@ const Application = () => {
         <CardModal>
           <Routes>
             <Route path="/" element={<FormEmployee />} />
-            <Route path="/update/:id" element={<FormEmployee />} />
+            <Route path="/update/:ci" element={<FormEmployee />} />
             <Route path="/sales" element={<FormSales />} />
             <Route path="/sales/update/:id" element={<FormSales />} />
           </Routes>
@@ -346,11 +329,7 @@ const Application = () => {
               columns={columnsE}
               data={dataE}
             />
-            <Datatable
-              enunciado={"ventas"}
-              columns={columnsV}
-              data={dataV}
-            />
+            <Datatable enunciado={"ventas"} columns={columnsV} data={dataV} />
           </div>
           <div className="h-screen lg:h-full lg:mx-3 my-3">
             <GestorSells />
