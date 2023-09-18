@@ -54,7 +54,7 @@ export const data = {
   datasets: [
     {
       label: "Leche",
-      data: [-300, 500, 300, 200, 500, 600, 100,500,-200], // Tus propios datos aquí
+      data: [-300, 500, 300, 200, 500, 600, 100, 500, -200], // Tus propios datos aquí
       borderColor: "rgb(255, 99, 132)",
       backgroundColor: "rgba(255, 99, 132, 0.5)",
     },
@@ -66,22 +66,20 @@ export const data = {
     },
     {
       label: "Yogurt",
-      data: [-100, 400, 100, 800, 400, 300, 800,500,-200], // Tus propios datos aquí
+      data: [-100, 400, 100, 800, 400, 300, 800, 500, -200], // Tus propios datos aquí
       borderColor: "rgb(255, 99, 132)",
       backgroundColor: "rgba(255, 99, 132, 0.5)",
     },
   ],
 };
 
-
-
 const GestorSells = () => {
   return (
-    <div className="h-screen lg:1/2 lg:mx-5">
-      <div className="h-full bg-slate-200 rounded-lg shadow-md shadow-black">
+    <>
+      <div className="h-full lg:h-96 bg-slate-200 rounded-lg shadow-md shadow-black">
         <Line options={options} data={data} />
       </div>
-    </div>
+    </>
   );
 };
 

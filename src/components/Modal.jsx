@@ -1,16 +1,15 @@
 import Modal from "react-modal";
 import { useServices } from "../context/ServiceContext";
-import { useRef } from 'react';
+import { useNavigate } from "react-router-dom";
+Modal.setAppElement(document.getElementById('root'));
 
 const CardModal = ({ children }) => {
+  const navigate =useNavigate()
   const { isModalOpen, setIsModalOpen } = useServices();
-
-  const openModal = () => {
-    setIsModalOpen(true);
-  };
 
   const closeModal = () => {
     setIsModalOpen(false);
+    navigate(`/application/`);
   };
 
   return (

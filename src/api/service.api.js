@@ -29,24 +29,24 @@ export const updateEmployeeRequest = async (id, newFields) =>
   await axios.put(`http://localhost:4000/employee/${id}`, newFields);
 
 /* listar ventas de cada empresa */
-export const getSell = async () =>
-  await axios.get("http://localhost:4000/sell");
+export const getSale = async () =>
+  await axios.get("http://localhost:4000/sale");
 
 /* crear nuevos ventas de cada empresa */
-export const createSell = async () =>
-  await axios.post("http://localhost:4000/sell", data);
+export const createSale = async () =>
+  await axios.post("http://localhost:4000/sale", data);
 
 /* eliminar venta unico de la empresa */
-export const deleteSellRequest = async (id) =>
-  await axios.delete(`http://localhost:4000/sell/${id}`);
+export const deleteSaleRequest = async (id) =>
+  await axios.delete(`http://localhost:4000/sale/${id}`);
 
 /* listar un solo venta de la empresa para modificar */
-export const getSellRequestOne = async () =>
-  await axios.get(`http://localhost:4000/sell/${id}`);
+export const getSaleRequestOne = async () =>
+  await axios.get(`http://localhost:4000/sale/${id}`);
 
 /* actualizar venta */
-export const updateSellRequest = async (id, newFields) =>
-  await axios.put(`http://localhost:4000/sell/${id}`, newFields);
+export const updateSaleRequest = async (id, newFields) =>
+  await axios.put(`http://localhost:4000/sale/${id}`, newFields);
 
 /* importar datos empresas */
 export const getCompanies = async () =>

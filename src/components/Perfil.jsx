@@ -23,10 +23,10 @@ const Perfil = () => {
       </div>
       <div className="flex flex-col">
 
-      <Buttons >
+      <Buttons type={""} >
         Registrar empleados
       </Buttons >
-      <Buttons >
+      <Buttons type={"sales"} >
         Registrar ventas
       </Buttons >
       </div>

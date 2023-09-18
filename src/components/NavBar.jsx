@@ -7,10 +7,10 @@ const Navbar = ({ currentPage }) => {
   const [isOffcanvasOpen, setIsOffcanvasOpen] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
-  
-  useEffect(()=>{
-    setIsOffcanvasOpen(false)
-  },[navigate])
+
+  useEffect(() => {
+    setIsOffcanvasOpen(false);
+  }, [navigate]);
 
   const toggleOffcanvas = () => {
     setIsOffcanvasOpen(!isOffcanvasOpen);
@@ -55,14 +55,14 @@ const Navbar = ({ currentPage }) => {
       )}
 
       {/* Botón */}
-      {location.pathname === "/application" ? (
+      {location.pathname.startsWith('/application') ? (
         <Link
           to="/"
           className="text-white bg-slate-950 hover:bg-slate-700 py-2 px-4 rounded-xl shadow-md shadow-gray-800 hidden lg:flex"
         >
           Cerrar Sesion
         </Link>
-      ): location.pathname !== "/suscription/login" ? (
+      ) : location.pathname !== "/suscription/login" ? (
         <Link
           to="/suscription/login"
           className="text-white bg-blue-900 py-2 px-4 rounded-xl shadow-md shadow-gray-800 hover:scale-105 ease-in-out duration-300 transform hidden lg:flex"
@@ -155,31 +155,31 @@ const Offcanvas = ({ isOpen, onClose, currentPage }) => {
           </li>
         </ul>
       )}
-      
+
       {/* boton de inicio sesion */}
       <div className="mt-5 flex justify-center">
-      {location.pathname === "/application" ? (
-        <Link
-          to="/"
-          className="text-white bg-slate-800 hover:bg-amber-700 py-2 px-4 rounded-xl shadow-md shadow-gray-800"
-        >
-          Cerrar Sesion
-        </Link>
-      ): location.pathname !== "/suscription/login" ? (
-        <Link
-          to="/suscription/login"
-          className="text-white bg-blue-900 py-2 px-4 rounded-xl shadow-md shadow-gray-800"
-        >
-          Iniciar Sesión
-        </Link>
-      ) : location.pathname !== "/suscription/" ? (
-        <Link
-          to="/suscription/"
-          className="text-white bg-green-800 py-2 px-4 rounded-xl shadow-md shadow-gray-800"
-        >
-          Registrarse
-        </Link>
-      ) : null}
+        {location.pathname.startsWith('/application') ? (
+          <Link
+            to="/"
+            className="text-white bg-slate-800 hover:bg-amber-700 py-2 px-4 rounded-xl shadow-md shadow-gray-800"
+          >
+            Cerrar Sesion
+          </Link>
+        ) : location.pathname !== "/suscription/login" ? (
+          <Link
+            to="/suscription/login"
+            className="text-white bg-blue-900 py-2 px-4 rounded-xl shadow-md shadow-gray-800"
+          >
+            Iniciar Sesión
+          </Link>
+        ) : location.pathname !== "/suscription/" ? (
+          <Link
+            to="/suscription/"
+            className="text-white bg-green-800 py-2 px-4 rounded-xl shadow-md shadow-gray-800"
+          >
+            Registrarse
+          </Link>
+        ) : null}
       </div>
     </div>
   );

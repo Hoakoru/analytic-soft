@@ -12,7 +12,7 @@ const App = () => {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/suscription/*" element={<Suscription />} />
-          <Route path="/application" element={<Application />} />
+          <Route path="/application/*" element={<Application />} />
         </Routes>
       </ServiceContextProvider>
     </div>

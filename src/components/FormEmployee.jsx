@@ -7,11 +7,11 @@ const FormEmployee = () => {
   /* logica de mostra emnsajes en el formulario */
   const [formSend, onChangeFormeSend] = useState(false);
   /* importacion de los metodos mediante el contexto */
-  const { createTask, setIsModalOpen } = useServices();
+  const { createTask, setIsModalOpen,employee } = useServices();
   const navigate = useNavigate(); /* impotrtacion de navegacion */
 
   const inputStyles = `
-  shadow appearance-none border border-sky-500 bg-gradient-to-r from-slate-800 to-slate-700 rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline text-white
+   appearance-none border border-blue-900 bg-cyan-950 rounded w-full py-2 px-3 leading-tight focus:outline-none  focus:border-red-500 text-white
 `;
   const labelStyles = "font-extralight text-sky-200";
   const errorStyles = "text-red-400 font-extralight text-md mt-1";
@@ -19,13 +19,7 @@ const FormEmployee = () => {
   return (
     <>
       <Formik
-        initialValues={{
-          name: "",
-          ci: "",
-          apellido_p: "",
-          apellido_m: "",
-          direccion: "",
-        }}
+        initialValues={employee}
         onSubmit={async (values, { resetForm }) => {
           /* createTask(values); */
           console.log(values);
