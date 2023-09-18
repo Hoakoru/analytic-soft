@@ -34,46 +34,45 @@ export const options = {
   },
 };
 
-const labels = [
-  "Enero",
-  "Febrero",
-  "Marzo",
-  "Abril",
-  "Mayo",
-  "Junio",
-  "Julio",
-  "Agosto",
-  "Septiembre",
-  "Octubre",
-  "Noviembre",
-  "Diciembre",
-];
-
-export const data = {
-  labels,
-  datasets: [
-    {
-      label: "Leche",
-      data: [-300, 500, 300, 200, 500, 600, 100, 500, -200], // Tus propios datos aquí
-      borderColor: "rgb(255, 99, 132)",
-      backgroundColor: "rgba(255, 99, 132, 0.5)",
-    },
-    {
-      label: "Pan",
-      data: [1000, 600, 400, 400, 300, 200, 100], // Tus propios datos aquí
-      borderColor: "rgb(53, 162, 235)",
-      backgroundColor: "rgba(53, 162, 235, 0.5)",
-    },
-    {
-      label: "Yogurt",
-      data: [-100, 400, 100, 800, 400, 300, 800, 500, -200], // Tus propios datos aquí
-      borderColor: "rgb(255, 99, 132)",
-      backgroundColor: "rgba(255, 99, 132, 0.5)",
-    },
-  ],
-};
-
 const GestorSells = () => {
+  const labels = [
+    "Enero",
+    "Febrero",
+    "Marzo",
+    "Abril",
+    "Mayo",
+    "Junio",
+    "Julio",
+    "Agosto",
+    "Septiembre",
+    "Octubre",
+    "Noviembre",
+    "Diciembre",
+  ];
+  const data = {
+    labels,
+    datasets: [
+      {
+        label: "Leche",
+        data: [-300, 500, 300, 200, 500, 600, 100, 500, -200], // Tus propios datos aquí
+        borderColor: "rgb(255, 99, 132)",
+        backgroundColor: "rgba(255, 99, 132, 0.5)",
+      },
+      {
+        label: "Pan",
+        data: [1000, 600, 400, 400, 300, 200, 100], // Tus propios datos aquí
+        borderColor: "rgb(53, 162, 235)",
+        backgroundColor: "rgba(53, 162, 235, 0.5)",
+      },
+      {
+        label: "Yogurt",
+        data: [-100, 400, 100, 800, 400, 300, 800, 500, -200], // Tus propios datos aquí
+        borderColor: "rgb(255, 99, 132)",
+        backgroundColor: "rgba(255, 99, 132, 0.5)",
+      },
+    ],
+  };
+
   return (
     <>
       <div className="h-full lg:h-96 bg-slate-200 rounded-lg shadow-md shadow-black">

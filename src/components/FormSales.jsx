@@ -8,7 +8,7 @@ const FormSales = () => {
   const [formSend, onChangeFormeSend] = useState(false);
   const [s, setS] = useState({
     producto: "",
-    venta: 0,
+    venta: "",
   });
   /* importacion de los metodos mediante el contexto */
   const { createTask, setIsModalOpen, sale, setSale } = useServices();
@@ -30,10 +30,7 @@ const FormSales = () => {
         productos: service.productos,
         venta: service.venta,
       }); */
-        const saleToLoad = sale.find((item) => item.id !== params.id);
-        if (saleToLoad) {
-          setS(saleToLoad);
-        }
+        setS(sale.find((item) => item.id === parseInt(params.id, 10)));
       }
     };
     loadSale();
@@ -46,7 +43,12 @@ const FormSales = () => {
         enableReinitialize={true}
         onSubmit={async (values, { resetForm }) => {
           /* createTask(values); */
-          console.log(values);
+          if (params.id) {
+            console.log(values);
+            console.log("crear empleado");
+          } else {
+            console.log("actualizar empleado");
+          }
           resetForm();
           /* navigate("/suscription/plans"); */ // Ajusta esto según tu navegación
         }}
@@ -54,7 +56,7 @@ const FormSales = () => {
         {() => (
           <Form className="w-full p-5 space-y-3">
             <h2 className="text-blue-500 text-3xl font-semibold text-center">
-              Registra la venta
+              {`${params.id ? "Actualiza" : "Registra"} tu venta`}
             </h2>
 
             {/* producto */}
@@ -94,12 +96,21 @@ const FormSales = () => {
             </div>
 
             <div className="flex items-center justify-center">
-              <button
-                type="submit"
-                className="bg-gradient-to-bl from-blue-800 to-blue-950 hover:from-indigo-600 hover:to-indigo-800 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full lg:w-1/4"
-              >
-                Registrar
-              </button>
+              {params.id ? (
+                <button
+                  type="submit"
+                  className="bg-emerald-800 hover:bg-emerald-700 text-white font-bold py-2 px-4 rounded-3xl shadow-sm shadow-black w-full lg:w-1/4"
+                >
+                  Actualizar
+                </button>
+              ) : (
+                <button
+                  type="submit"
+                  className="bg-blue-800 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-3xl shadow-sm shadow-black w-full lg:w-1/4"
+                >
+                  Registrar
+                </button>
+              )}
             </div>
           </Form>
         )}

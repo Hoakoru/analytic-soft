@@ -71,7 +71,7 @@ const Container = () => {
         </div>
 
         {/* imagen */}
-        <div className="flex-1">
+        <div className="flex-1 flex justify-center items-center">
           <img src={img1} alt="Imagen representativa" className="object-contain p-20" />
         </div>
       </div>

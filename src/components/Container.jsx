@@ -30,7 +30,7 @@ const Container = () => {
           </div>
         </div>
 
-        <div className="flex-1">
+        <div className="flex-1 flex justify-center items-center">
           <img
             src={img1}
             alt="Imagen representativa"

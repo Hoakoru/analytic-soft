@@ -33,7 +33,7 @@ const FormEmployee = () => {
         productos: service.productos,
         venta: service.venta,
       }); */
-        setE(employee.find((item) => item.ci !== params.ci));
+        setE(employee.find((item) => item.ci === parseInt(params.ci, 10)));
       }
       console.log(e);
     };
@@ -47,7 +47,12 @@ const FormEmployee = () => {
         enableReinitialize={true}
         onSubmit={async (values, { resetForm }) => {
           /* createTask(values); */
-          console.log(values);
+          if (params.ci) {
+            console.log(values);
+            console.log("crear empleado");
+          } else {
+            console.log("actualizar empleado");
+          }
           resetForm();
           /* navigate("/suscription/plans"); */ // Ajusta esto según tu navegación
         }}
@@ -55,7 +60,7 @@ const FormEmployee = () => {
         {() => (
           <Form className="w-full p-5 space-y-3">
             <h2 className="text-blue-500 text-3xl font-semibold text-center">
-              Registra tu empleado
+              {`${params.ci ? "Actualiza" : "Registra"} tu empleado`}
             </h2>
 
             <div className="flex space-x-2">
@@ -91,7 +96,7 @@ const FormEmployee = () => {
             </div>
             <div className="flex space-x-2">
               {/* Apellido Paterno */}
-              <div>
+              <div className="flex-1">
                 <label htmlFor="apellido_p" className={labelStyles}>
                   Apellido Paterno:
                 </label>
@@ -109,7 +114,7 @@ const FormEmployee = () => {
               </div>
 
               {/* Apellido Materno */}
-              <div>
+              <div className="flex-1">
                 <label htmlFor="apellido_m" className={labelStyles}>
                   Apellido Materno:
                 </label>
@@ -146,12 +151,21 @@ const FormEmployee = () => {
             </div>
 
             <div className="flex items-center justify-center">
-              <button
-                type="submit"
-                className="bg-gradient-to-bl from-blue-800 to-blue-950 hover:from-indigo-600 hover:to-indigo-800 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full lg:w-1/4"
-              >
-                Registrar
-              </button>
+              {params.ci ? (
+                <button
+                  type="submit"
+                  className="bg-emerald-800 hover:bg-emerald-700 text-white font-bold py-2 px-4 rounded-3xl shadow-sm shadow-black w-full lg:w-1/4"
+                >
+                  Actualizar
+                </button>
+              ) : (
+                <button
+                  type="submit"
+                  className="bg-blue-800 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-3xl shadow-sm shadow-black w-full lg:w-1/4"
+                >
+                  Registrar
+                </button>
+              )}
             </div>
           </Form>
         )}

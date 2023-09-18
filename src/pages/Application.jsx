@@ -188,6 +188,8 @@ const Application = () => {
     },
   ];
 
+  
+
   const handleUpdate = (row) => {
     setIsModalOpen(true);
     navigate(`/application/update/${row.ci}`);
