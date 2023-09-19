@@ -60,7 +60,7 @@ const FormRegister = () => {
         ) : (
           company.map((e) => {
             return (
-              <option key={e.id} value={e.title}>
+              <option key={e.id} value={e.title} className="text-slate-900">
                 {e.title}
               </option>
             );
@@ -79,7 +79,7 @@ const FormRegister = () => {
         ) : (
           years.map((e) => {
             return (
-              <option key={e} value={e}>
+              <option key={e} value={e} className="text-slate-900">
                 {e}
               </option>
             );
@@ -180,7 +180,7 @@ const FormRegister = () => {
                 as="select"
                 name="company"
                 id="company"
-                className="shadow appearance-none border border-sky-500 bg-gradient-to-r from-slate-800 to-slate-700 rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline text-white"
+                className="shadow appearance-none border border-sky-500 bg-gradient-to-r from-slate-800 to-slate-700 rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline "
               >
                 {loadCompanies()}
               </Field>
@@ -192,7 +192,7 @@ const FormRegister = () => {
             </div>
 
             {/* Años de experiencia */}
-            <div className="w-full">
+            <div className="w-full ">
               <label htmlFor="year_exp" className="block font-bold mb-2">
                 Años de experiencia:
               </label>
@@ -200,7 +200,7 @@ const FormRegister = () => {
                 as="select"
                 name="year_exp"
                 id="year_exp"
-                className="shadow appearance-none border border-sky-500 bg-gradient-to-r from-slate-800 to-slate-700 rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline text-white"
+                className="shadow appearance-none border border-sky-500 bg-gradient-to-r from-slate-800 to-slate-700 rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline "
               >
                 {loadYears()}
               </Field>

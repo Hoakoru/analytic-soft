@@ -11,7 +11,7 @@ const Container = () => {
         {/* primera parte del contenedor */}
 
         <div className="h-screen flex-1 flex items-center justify-center  p-8">
-          <div className="p-10">
+          <div className="p-10 ">
             <Section
               title="Misión"
               styleTitle="text-4xl font-bold mb-5 tracking-widest"

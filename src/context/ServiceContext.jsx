@@ -277,6 +277,16 @@ export const ServiceContextProvider = ({ children }) => {
           productos: "Queso",
           venta: 800,
         },
+        {
+          id: 4,
+          productos: "Harina",
+          venta: 1000,
+        },
+        {
+          id: 5,
+          productos: "Manteca",
+          venta: 500,
+        },
       ];
       setSale(dataV);
     } catch (error) {

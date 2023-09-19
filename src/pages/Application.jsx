@@ -27,6 +27,21 @@ const Application = () => {
     getEmployeeService,
   } = useServices();
 
+  const month = [
+    "Enero",
+    "Febrero",
+    "Marzo",
+    "Abril",
+    "Mayo",
+    "Junio",
+    "Julio",
+    "Agosto",
+    "Septiembre",
+    "Octubre",
+    "Noviembre",
+    "Diciembre",
+  ];
+
   const dataE = [
     {
       ci: 1,
@@ -170,7 +185,34 @@ const Application = () => {
     },
   ];
 
-  const dataV = [
+  const dataVE = [
+    {
+      id: 1,
+      productos: "Leche ",
+      venta: 200,
+    },
+    {
+      id: 2,
+      productos: "Mantequilla",
+      venta: 100,
+    },
+    {
+      id: 3,
+      productos: "Queso",
+      venta: 800,
+    },
+    {
+      id: 4,
+      productos: "Harina",
+      venta: 1000,
+    },
+    {
+      id: 5,
+      productos: "Manteca",
+      venta: 500,
+    },
+  ];
+  const dataVF = [
     {
       id: 1,
       productos: "Leche ",
@@ -187,35 +229,6 @@ const Application = () => {
       venta: 800,
     },
   ];
-
-  
-
-  const handleUpdate = (row) => {
-    setIsModalOpen(true);
-    navigate(`/application/update/${row.ci}`);
-    /* const loadEmployee = async () => {
-      if (params.ci) {
-        const service = await getEmployeeService(params.ci);
-        setEmployee({
-          ci: service.ci,
-          name: service.name,
-          apellido_p: service.apellido_p,
-          apellido_m: service.apellido_m,
-          direccion: service.direccion,
-        });
-      }
-    };
-    loadEmployee(); */
-  };
-
-  const handleDelete = (row) => {};
-
-  const handleUpdateV = (row) => {
-    setIsModalOpen(true);
-    navigate(`/application/sales/update/${row.id}`);
-  };
-
-  const handleDeleteV = (row) => {};
 
   const columnsE = [
     {
@@ -297,6 +310,20 @@ const Application = () => {
     },
   ];
 
+  const handleUpdate = (row) => {
+    setIsModalOpen(true);
+    navigate(`/application/update/${row.ci}`);
+  };
+
+  const handleDelete = (row) => {};
+
+  const handleUpdateV = (row) => {
+    setIsModalOpen(true);
+    navigate(`/application/sales/update/${row.id}`);
+  };
+
+  const handleDeleteV = (row) => {};
+
   useEffect(() => {
     getEmployeesService();
     getSalesService();
@@ -331,10 +358,15 @@ const Application = () => {
               columns={columnsE}
               data={dataE}
             />
-            <Datatable enunciado={"ventas"} columns={columnsV} data={dataV} />
+            <Datatable
+              enunciado={"ventas"}
+              columns={columnsV}
+              data={dataVE}
+              month={month}
+            />
           </div>
-          <div className="h-screen lg:h-full lg:mx-3 my-3">
-            <GestorSells />
+          <div className="h-full lg:h-full lg:mx-3 my-3 space-y-3">
+            <GestorSells month={month} dataVE={dataVE} dataVF={dataVF} />
           </div>
         </div>
         <div className="absolute inset-0 bg-gradient-to-tl from-rose-700 via-purple-950 to-slate-950 z-0"></div>
