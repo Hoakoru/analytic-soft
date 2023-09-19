@@ -325,8 +325,12 @@ const Application = () => {
   const handleDeleteV = (row) => {};
 
   useEffect(() => {
-    getEmployeesService();
-    getSalesService();
+    const loadDate = async () => {
+      await getEmployeesService();
+      await getSalesService();
+    };
+
+    loadDate();
   }, []);
 
   return (

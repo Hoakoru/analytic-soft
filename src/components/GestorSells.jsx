@@ -1,4 +1,6 @@
 import { Line, Bar, Pie } from "react-chartjs-2";
+import { useEffect, useState } from "react";
+import { useServices } from "../context/ServiceContext";
 import "chart.js/auto";
 
 export const optionsLine = {
@@ -45,6 +47,17 @@ export const optionPie = {
 };
 
 const GestorSells = ({ month, dataVE, dataVF }) => {
+  const { option, setOption } = useServices();
+  const [dataBar, setdataBar] = useState({
+    labels: [],
+    datasets: [],
+  });
+  const [dataPie, setdataPie] = useState({
+    labels: [],
+    datasets: [],
+  });
+  const [dataG, setDataG] = useState([]);
+  /* configuracion de colore predeterminados */
   const colores = [
     "rgba(255, 0, 0, 0.7)",
     "rgba(0, 0, 255, 0.7)",
@@ -54,6 +67,7 @@ const GestorSells = ({ month, dataVE, dataVF }) => {
     "rgba(75, 0, 130, 0.7)",
     "rgba(0, 128, 0, 0.7)",
   ];
+  /* los bordes predeterminados */
   const bordes = [
     "rgba(255, 128, 128, 1)",
     "rgba(128, 128, 255, 1)",
@@ -64,6 +78,7 @@ const GestorSells = ({ month, dataVE, dataVF }) => {
     "rgba(144, 238, 144, 1)",
   ];
 
+  /* une ambos array */
   const mergedData = dataVE.map((itemVE) => {
     const matchingItem = dataVF.find(
       (itemVF) => itemVF.productos === itemVE.productos
@@ -84,40 +99,51 @@ const GestorSells = ({ month, dataVE, dataVF }) => {
       };
     }
   });
-
-  const datasetsLine = mergedData.map((item, index) => ({
-    label: `${item.productos}`,
-    data: item.venta,
-    borderColor: bordes[index],
-    backgroundColor: colores[index],
-  }));
-
+  /* carga los datos del grafico linear */
   const dataLine = {
     labels: month,
-    datasets: datasetsLine,
+    datasets: mergedData.map((item, index) => ({
+      label: `${item.productos}`,
+      data: item.venta,
+      borderColor: bordes[index],
+      backgroundColor: colores[index],
+    })),
   };
 
-  const dataBar = {
-    labels: dataVE.map((item) => item.productos), // Usar los nombres de productos como etiquetas
-    datasets: [
-      {
-        data: dataVE.map((item) => item.venta),
-        borderColor: bordes,
-        backgroundColor: colores,
-      },
-    ],
-  };
+  useEffect(() => {
+    setOption(1);
+  }, []);
 
-  const dataPie = {
-    labels: dataVE.map((item) => item.productos), // Usar los nombres de productos como etiquetas
-    datasets: [
-      {
-        data: dataVE.map((item) => item.venta),
-        borderColor: bordes,
-        backgroundColor: colores,
-      },
-    ],
-  };
+  useEffect(() => {
+    option === 1
+      ? setDataG(dataVE)
+      : option === 2
+      ? setDataG(dataVF)
+      : setDataG([]);
+
+    /* carga lso datos del grafico bar */
+    setdataBar({
+      labels: dataG.map((item) => item.productos),
+      datasets: [
+        {
+          data: dataG.map((item) => item.venta),
+          borderColor: bordes,
+          backgroundColor: colores,
+        },
+      ],
+    });
+    /* carga los datos del garfico de pie */
+    setdataPie({
+      labels: dataG.map((item) => item.productos),
+      datasets: [
+        {
+          data: dataG.map((item) => item.venta),
+          borderColor: bordes,
+          backgroundColor: colores,
+        },
+      ],
+    });
+  }, [option]);
 
   return (
     <>

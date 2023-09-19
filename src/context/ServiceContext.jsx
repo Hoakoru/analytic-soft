@@ -27,6 +27,8 @@ export const ServiceContextProvider = ({ children }) => {
   /* estados del registor de usuario */
   const [user, setUser] = useState([]);
   const [plan, setPlan] = useState("");
+  /* estado de cambio de venta */
+  const [option, setOption] = useState(0);
   /* estados para los empleados */
   const [employee, setEmployee] = useState({
     ci: "",
@@ -261,16 +263,16 @@ export const ServiceContextProvider = ({ children }) => {
   const getSalesService = async () => {
     try {
       /* const reponse = await getSale(); */
-      const dataV = [
+      const dataVE = [
         {
           id: 1,
           productos: "Leche ",
-          venta: 500,
+          venta: 200,
         },
         {
           id: 2,
           productos: "Mantequilla",
-          venta: 600,
+          venta: 100,
         },
         {
           id: 3,
@@ -288,7 +290,7 @@ export const ServiceContextProvider = ({ children }) => {
           venta: 500,
         },
       ];
-      setSale(dataV);
+      setSale(dataVE);
     } catch (error) {
       console.error(error);
     }
@@ -358,6 +360,8 @@ export const ServiceContextProvider = ({ children }) => {
         company,
         plan,
         setPlan,
+        option,
+        setOption,
       }}
     >
       {children}
