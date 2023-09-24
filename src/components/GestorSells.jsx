@@ -46,17 +46,16 @@ export const optionPie = {
   },
 };
 
-const GestorSells = ({ month, dataVE, dataVF }) => {
-  const { option, setOption } = useServices();
-  const [dataBar, setdataBar] = useState({
+const GestorSells = () => {
+  const { option, sale } = useServices();
+  const [dataBar, setDataBar] = useState({
     labels: [],
     datasets: [],
   });
-  const [dataPie, setdataPie] = useState({
+  const [dataPie, setDataPie] = useState({
     labels: [],
     datasets: [],
   });
-  const [dataG, setDataG] = useState([]);
   /* configuracion de colore predeterminados */
   const colores = [
     "rgba(255, 0, 0, 0.7)",
@@ -78,8 +77,27 @@ const GestorSells = ({ month, dataVE, dataVF }) => {
     "rgba(144, 238, 144, 1)",
   ];
 
+  useEffect(() => {
+    const loadDataGrafics = async () => {
+      // carga lso datos del grafico bar
+      const dataGrafics = {
+        labels: sale.map((item) => item.productos),
+        datasets: [
+          {
+            data: sale.map((item) => item.venta),
+            borderColor: bordes,
+            backgroundColor: colores,
+          },
+        ],
+      };
+      setDataBar(dataGrafics);
+      setDataPie(dataGrafics);
+    };
+    loadDataGrafics();
+  }, [sale]);
+
   /* une ambos array */
-  const mergedData = dataVE.map((itemVE) => {
+  /* const mergedData = dataVE.map((itemVE) => {
     const matchingItem = dataVF.find(
       (itemVF) => itemVF.productos === itemVE.productos
     );
@@ -98,9 +116,9 @@ const GestorSells = ({ month, dataVE, dataVF }) => {
         venta: [itemVE.venta], // Puedes establecer un valor predeterminado para la segunda venta si es necesario
       };
     }
-  });
+  }); */
   /* carga los datos del grafico linear */
-  const dataLine = {
+  /* const dataLine = {
     labels: month,
     datasets: mergedData.map((item, index) => ({
       label: `${item.productos}`,
@@ -108,48 +126,13 @@ const GestorSells = ({ month, dataVE, dataVF }) => {
       borderColor: bordes[index],
       backgroundColor: colores[index],
     })),
-  };
-
-  useEffect(() => {
-    setOption(1);
-  }, []);
-
-  useEffect(() => {
-    option === 1
-      ? setDataG(dataVE)
-      : option === 2
-      ? setDataG(dataVF)
-      : setDataG([]);
-
-    /* carga lso datos del grafico bar */
-    setdataBar({
-      labels: dataG.map((item) => item.productos),
-      datasets: [
-        {
-          data: dataG.map((item) => item.venta),
-          borderColor: bordes,
-          backgroundColor: colores,
-        },
-      ],
-    });
-    /* carga los datos del garfico de pie */
-    setdataPie({
-      labels: dataG.map((item) => item.productos),
-      datasets: [
-        {
-          data: dataG.map((item) => item.venta),
-          borderColor: bordes,
-          backgroundColor: colores,
-        },
-      ],
-    });
-  }, [option]);
+  }; */
 
   return (
     <>
-      <div className="h-screen lg:h-96 bg-slate-200 rounded-lg shadow-md shadow-black p-5">
+      {/* <div className="h-screen lg:h-96 bg-slate-200 rounded-lg shadow-md shadow-black p-5">
         <Line options={optionsLine} data={dataLine} />
-      </div>
+      </div> */}
       <div className="h-screen lg:h-96 flex flex-col lg:flex-row items-center justify-center bg-slate-200 rounded-lg shadow-md shadow-black">
         <div className="h-full lg:w-1/2 p-5">
           <Bar options={optionsBar} data={dataBar} />

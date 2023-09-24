@@ -11,12 +11,12 @@ const Buttons = ({ type, children }) => {
   };
 
   return (
-    <div className="flex-1 p-2">
+    <div className="m-1">
       <button
         onClick={() => handleOpen(type)}
         className={`${
           type === "sales" ? "bg-cyan-800" : "bg-blue-800"
-        } text-slate-300 hover:bg-blue-800 shadow-md shadow-black px-4 py-2 rounded-lg h-14 w-full`}
+        } text-slate-300 hover:bg-blue-800 shadow-md shadow-black px-3 py-2 rounded-lg max-h-14 w-full`}
       >
         {children}
       </button>

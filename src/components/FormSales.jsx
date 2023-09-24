@@ -4,14 +4,12 @@ import { useNavigate, useParams } from "react-router-dom";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 
 const FormSales = () => {
-  /* logica de mostra emnsajes en el formulario */
-  const [formSend, onChangeFormeSend] = useState(false);
   const [s, setS] = useState({
     producto: "",
     venta: "",
   });
   /* importacion de los metodos mediante el contexto */
-  const { createTask, setIsModalOpen, sale, setSale } = useServices();
+  const { createTask, sale } = useServices();
   const navigate = useNavigate(); /* impotrtacion de navegacion */
   const params = useParams();
 
@@ -34,7 +32,7 @@ const FormSales = () => {
       }
     };
     loadSale();
-  });
+  },[sale]);
 
   return (
     <>

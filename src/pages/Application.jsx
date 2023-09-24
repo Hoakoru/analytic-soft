@@ -8,227 +8,28 @@ import { Routes, Route } from "react-router-dom";
 import FormEmployee from "../components/FormEmployee";
 import FormSales from "../components/FormSales";
 import { useServices } from "../context/ServiceContext";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams, useLocation } from "react-router-dom";
 import img1 from "../assets/img/update.png";
 import img2 from "../assets/img/delete.png";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { Formik, Field, ErrorMessage } from "formik";
 
 const Application = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const params = useParams();
   const {
     setIsModalOpen,
     getEmployeesService,
-    employee,
-    setEmployee,
     getSalesService,
-    sale,
-    setSale,
-    getEmployeeService,
+    getSalesServiceF,
+    option,
+    setOption,
+    month,
   } = useServices();
+  const [mes, setMeses] = useState(month);
 
-  const month = [
-    "Enero",
-    "Febrero",
-    "Marzo",
-    "Abril",
-    "Mayo",
-    "Junio",
-    "Julio",
-    "Agosto",
-    "Septiembre",
-    "Octubre",
-    "Noviembre",
-    "Diciembre",
-  ];
-
-  const dataE = [
-    {
-      ci: 1,
-      name: "John",
-      apellido_p: "Doe",
-      apellido_m: "Smith",
-      direccion: "123 Main St",
-    },
-    {
-      ci: 2,
-      name: "Jane",
-      apellido_p: "Smith",
-      apellido_m: "Doe",
-      direccion: "456 Elm St",
-    },
-    {
-      ci: 3,
-      name: "Michael",
-      apellido_p: "Johnson",
-      apellido_m: "Brown",
-      direccion: "789 Oak St",
-    },
-    {
-      ci: 4,
-      name: "Emily",
-      apellido_p: "Davis",
-      apellido_m: "Wilson",
-      direccion: "101 Pine St",
-    },
-    {
-      ci: 5,
-      name: "Robert",
-      apellido_p: "Martinez",
-      apellido_m: "Lee",
-      direccion: "202 Maple St",
-    },
-    {
-      ci: 6,
-      name: "Jennifer",
-      apellido_p: "Garcia",
-      apellido_m: "White",
-      direccion: "303 Cedar St",
-    },
-    {
-      ci: 7,
-      name: "David",
-      apellido_p: "Hernandez",
-      apellido_m: "Smith",
-      direccion: "404 Birch St",
-    },
-    {
-      ci: 8,
-      name: "Mary",
-      apellido_p: "Lopez",
-      apellido_m: "Johnson",
-      direccion: "505 Redwood St",
-    },
-    {
-      ci: 9,
-      name: "Daniel",
-      apellido_p: "Gonzalez",
-      apellido_m: "Davis",
-      direccion: "606 Willow St",
-    },
-    {
-      ci: 10,
-      name: "Patricia",
-      apellido_p: "Brown",
-      apellido_m: "Miller",
-      direccion: "707 Cedar St",
-    },
-    {
-      ci: 11,
-      name: "Jane",
-      apellido_p: "Johnson",
-      apellido_m: "Williams",
-      direccion: "456 Elm St",
-    },
-    {
-      ci: 12,
-      name: "Michael",
-      apellido_p: "Davis",
-      apellido_m: "Brown",
-      direccion: "789 Oak St",
-    },
-    {
-      ci: 13,
-      name: "Emily",
-      apellido_p: "Martinez",
-      apellido_m: "Lee",
-      direccion: "101 Pine St",
-    },
-    {
-      ci: 14,
-      name: "Robert",
-      apellido_p: "Garcia",
-      apellido_m: "White",
-      direccion: "202 Maple St",
-    },
-    {
-      ci: 15,
-      name: "Jennifer",
-      apellido_p: "Hernandez",
-      apellido_m: "Smith",
-      direccion: "303 Cedar St",
-    },
-    {
-      ci: 16,
-      name: "David",
-      apellido_p: "Lopez",
-      apellido_m: "Johnson",
-      direccion: "404 Birch St",
-    },
-    {
-      ci: 17,
-      name: "Mary",
-      apellido_p: "Gonzalez",
-      apellido_m: "Davis",
-      direccion: "505 Redwood St",
-    },
-    {
-      ci: 18,
-      name: "Daniel",
-      apellido_p: "Brown",
-      apellido_m: "Miller",
-      direccion: "606 Willow St",
-    },
-    {
-      ci: 19,
-      name: "Patricia",
-      apellido_p: "Clark",
-      apellido_m: "Moore",
-      direccion: "707 Cedar St",
-    },
-    {
-      ci: 20,
-      name: "Richard",
-      apellido_p: "Wright",
-      apellido_m: "Anderson",
-      direccion: "808 Oak St",
-    },
-  ];
-
-  const dataVE = [
-    {
-      id: 1,
-      productos: "Leche ",
-      venta: 200,
-    },
-    {
-      id: 2,
-      productos: "Mantequilla",
-      venta: 100,
-    },
-    {
-      id: 3,
-      productos: "Queso",
-      venta: 800,
-    },
-    {
-      id: 4,
-      productos: "Harina",
-      venta: 1000,
-    },
-    {
-      id: 5,
-      productos: "Manteca",
-      venta: 500,
-    },
-  ];
-  const dataVF = [
-    {
-      id: 1,
-      productos: "Leche ",
-      venta: 500,
-    },
-    {
-      id: 2,
-      productos: "Mantequilla",
-      venta: 600,
-    },
-    {
-      id: 3,
-      productos: "Queso",
-      venta: 800,
-    },
-  ];
+  const styleError = "text-red-500 text-md mt-1 italic tracking-tight";
 
   const columnsE = [
     {
@@ -310,6 +111,31 @@ const Application = () => {
     },
   ];
 
+  const loadMonth = () => {
+    return (
+      <>
+        <option>Selecciona el mes de venta</option>
+        {mes.length <= 0 ? (
+          <option value={""} className="text-slate-500">
+            No existen datos
+          </option>
+        ) : (
+          mes.map((e, index) => {
+            return (
+              <option key={e} value={index + 1}>
+                {e}
+              </option>
+            );
+          })
+        )}
+      </>
+    );
+  };
+
+  const handleChange = (e) => {
+    setOption(parseInt(e.target.value));
+  };
+
   const handleUpdate = (row) => {
     setIsModalOpen(true);
     navigate(`/application/update/${row.ci}`);
@@ -325,19 +151,46 @@ const Application = () => {
   const handleDeleteV = (row) => {};
 
   useEffect(() => {
-    const loadDate = async () => {
-      await getEmployeesService();
-      await getSalesService();
-    };
-
-    loadDate();
+    getEmployeesService();
+    setOption(1);
   }, []);
+
+  useEffect(()=>{
+    if (option === 1) {
+      getSalesService();
+    } else if (option === 2) {
+      getSalesServiceF();
+    }
+  },[option])
 
   return (
     <>
       {/* navegador del ususario */}
       <NavBar />
+
       <div className="relative flex flex-col lg:flex-row bg-slate-800 min-h-screen mt-16 p-2">
+        {location.pathname.startsWith("/application") && (
+          <Formik>
+            {() => (
+              <div className="fixed text-end bg-slate-100 w-1/2 lg:w-1/4 bottom-0 right-0 z-50">
+                <Field
+                  as="select"
+                  name="month"
+                  id="month"
+                  className="appearance-none border-b border-sky-300 bg-sky-500 rounded w-full py-2 px-3 leading-tight text-slate-900 ventas"
+                  onChange={handleChange}
+                >
+                  {loadMonth()}
+                </Field>
+                <ErrorMessage
+                  name="month"
+                  component="div"
+                  className={styleError}
+                />
+              </div>
+            )}
+          </Formik>
+        )}
         {/* perfil del ususario */}
         <div className="h-screen lg:w-1/4 mb-2 relative z-30">
           <Perfil />
@@ -357,20 +210,11 @@ const Application = () => {
         {/* ventana de los usuarios y ventas */}
         <div className="min-h-screen flex flex-col flex-1 relative z-30">
           <div className="h-full lg:h-screen pb-3 space-y-3">
-            <Datatable
-              enunciado={"empleados"}
-              columns={columnsE}
-              data={dataE}
-            />
-            <Datatable
-              enunciado={"ventas"}
-              columns={columnsV}
-              data={dataVE}
-              month={month}
-            />
+            <Datatable enunciado={"empleados"} columns={columnsE} />
+            <Datatable enunciado={"ventas"} columns={columnsV} />
           </div>
           <div className="h-full lg:h-full lg:mx-3 my-3 space-y-3">
-            <GestorSells month={month} dataVE={dataVE} dataVF={dataVF} />
+            <GestorSells />
           </div>
         </div>
         <div className="absolute inset-0 bg-gradient-to-tl from-rose-700 via-purple-950 to-slate-950 z-0"></div>

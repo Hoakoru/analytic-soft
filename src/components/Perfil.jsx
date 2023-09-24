@@ -12,7 +12,7 @@ const Perfil = () => {
         />
       </div>
       <div className="text-center space-y-3">
-        <span className="text-end" >Bienvenido!!!</span>
+        <span className="text-end">Bienvenido!!!</span>
         <h2 className="text-lg font-semibold">Juan Diego Gutierrez Quintana</h2>
         <p className="text-lg text-gray-500">Analytic Soft</p>
         <div>
@@ -21,14 +21,9 @@ const Perfil = () => {
           {/* Agrega más detalles de la empresa aquí */}
         </div>
       </div>
-      <div className="flex flex-col">
-
-      <Buttons type={""} >
-        Registrar empleados
-      </Buttons >
-      <Buttons type={"sales"} >
-        Registrar ventas
-      </Buttons >
+      <div className="flex lg:flex-col ">
+        <Buttons type={""}>Registrar empleados</Buttons>
+        <Buttons type={"sales"}>Registrar ventas</Buttons>
       </div>
     </div>
   );

@@ -4,8 +4,6 @@ import { useNavigate, useParams } from "react-router-dom";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 
 const FormEmployee = () => {
-  /* logica de mostra emnsajes en el formulario */
-  const [formSend, onChangeFormeSend] = useState(false);
   const [e, setE] = useState({
     ci: "",
     name: "",
@@ -14,7 +12,7 @@ const FormEmployee = () => {
     direccion: "",
   });
   /* importacion de los metodos mediante el contexto */
-  const { createTask, setIsModalOpen, employee } = useServices();
+  const { createTask, employee } = useServices();
   const navigate = useNavigate(); /* impotrtacion de navegacion */
   const params = useParams();
 
@@ -38,7 +36,7 @@ const FormEmployee = () => {
       console.log(e);
     };
     loadEmployee();
-  });
+  },[employee]);
 
   return (
     <>
