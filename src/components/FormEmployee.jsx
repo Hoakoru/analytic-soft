@@ -33,7 +33,6 @@ const FormEmployee = () => {
       }); */
         setE(employee.find((item) => item.ci === parseInt(params.ci, 10)));
       }
-      console.log(e);
     };
     loadEmployee();
   },[employee]);
@@ -46,10 +45,9 @@ const FormEmployee = () => {
         onSubmit={async (values, { resetForm }) => {
           /* createTask(values); */
           if (params.ci) {
-            console.log(values);
-            console.log("crear empleado");
-          } else {
             console.log("actualizar empleado");
+          } else {
+            console.log("crear empleado");
           }
           resetForm();
           /* navigate("/suscription/plans"); */ // Ajusta esto según tu navegación
