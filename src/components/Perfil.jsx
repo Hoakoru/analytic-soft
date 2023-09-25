@@ -36,7 +36,7 @@ const Perfil = () => {
         </div>
       </div>
       <div className="flex lg:flex-col ">
-        <Buttons type={""}>Registrar empleados</Buttons>
+        <Buttons type={"employee"}>Registrar empleados</Buttons>
         <Buttons type={"sales"}>Registrar ventas</Buttons>
       </div>
     </div>

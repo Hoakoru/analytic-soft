@@ -3,7 +3,7 @@ import Container from "../components/Container";
 import CardGroup from "../components/CardGroup";
 import Client from "../components/Clients";
 import Footer from "../components/Footer";
-import { Element } from "react-scroll";
+import { Element,scrollSpy  } from "react-scroll";
 
 const Home = () => {
   return (

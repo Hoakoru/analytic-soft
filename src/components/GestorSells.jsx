@@ -1,21 +1,8 @@
-import { Line, Bar, Pie } from "react-chartjs-2";
+import { Bar, Pie } from "react-chartjs-2";
 import { useEffect, useState } from "react";
 import { useServices } from "../context/ServiceContext";
+import GeneralGrafic from "../components/GeneralGrafic"
 import "chart.js/auto";
-
-export const optionsLine = {
-  responsive: true,
-  maintainAspectRatio: false,
-  plugins: {
-    legend: {
-      position: "bottom",
-    },
-    title: {
-      display: true,
-      text: "Gestion de ventas",
-    },
-  },
-};
 
 export const optionsBar = {
   responsive: true,
@@ -96,43 +83,9 @@ const GestorSells = () => {
     loadDataGrafics();
   }, [sale]);
 
-  /* une ambos array */
-  /* const mergedData = dataVE.map((itemVE) => {
-    const matchingItem = dataVF.find(
-      (itemVF) => itemVF.productos === itemVE.productos
-    );
-    if (matchingItem) {
-      // Si hay un objeto con el mismo nombre en ambos arrays, combina las ventas en un array
-      return {
-        id: itemVE.id,
-        productos: itemVE.productos,
-        venta: [itemVE.venta, matchingItem.venta], // Combina las ventas en un array
-      };
-    } else {
-      // Si no hay un objeto con el mismo nombre en el array VF, simplemente agrega el objeto del array VE
-      return {
-        id: itemVE.id,
-        productos: itemVE.productos,
-        venta: [itemVE.venta], // Puedes establecer un valor predeterminado para la segunda venta si es necesario
-      };
-    }
-  }); */
-  /* carga los datos del grafico linear */
-  /* const dataLine = {
-    labels: month,
-    datasets: mergedData.map((item, index) => ({
-      label: `${item.productos}`,
-      data: item.venta,
-      borderColor: bordes[index],
-      backgroundColor: colores[index],
-    })),
-  }; */
-
   return (
     <>
-      {/* <div className="h-screen lg:h-96 bg-slate-200 rounded-lg shadow-md shadow-black p-5">
-        <Line options={optionsLine} data={dataLine} />
-      </div> */}
+      <GeneralGrafic />
       <div className="h-screen lg:h-96 flex flex-col lg:flex-row items-center justify-center bg-slate-200 rounded-lg shadow-md shadow-black">
         <div className="h-full lg:w-1/2 p-5">
           <Bar options={optionsBar} data={dataBar} />

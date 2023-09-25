@@ -5,15 +5,22 @@ import Card from "./Card";
 import { useLocation, useNavigate, Link } from "react-router-dom";
 import Section from "./Section";
 import { useServices } from "../context/ServiceContext";
+import { useInView } from "react-intersection-observer";
 
 const CardGroup = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const { plan, setPlan, user, setUser } = useServices();
 
+  const optionView = {
+    triggerOnce: false,
+    threshold: 0.02,
+  };
+  const [ref1, inView1] = useInView(optionView);
+
   const extraStyles =
     location.pathname !== "/suscription/plans"
-      ? "bg-gray-800 py-20 mx-10"
+      ? "bg-slate-800 py-20 mx-10 lg:mx-0 flex-1"
       : `bg-transparent border px-8 h-96 `;
 
   const handleClick = () => {
@@ -23,13 +30,19 @@ const CardGroup = () => {
 
   return (
     <div className="relative">
-      <div
-        id="cardgroup"
-        className="min-h-screen flex flex-col justify-center items-center relative z-30 pt-32 "
-      >
-        <div className="flex flex-col justify-center items-center space-y-24 lg:flex-row lg:space-x-24 lg:space-y-0 lg:px-10 h-full">
+      <div className="min-h-screen flex flex-col justify-center items-center relative z-30 pt-32 ">
+        <div
+          ref={ref1}
+          className={`opacity-0 transition-opacity duration-1000 ease-in-out ${
+            location.pathname !== "/suscription/plans"
+              ? inView1
+                ? "opacity-100"
+                : ""
+              : "opacity-100"
+          } flex flex-col space-y-24 lg:flex-row lg:space-x-10 lg:space-y-0 lg:px-10 h-full`}
+        >
           <div
-            className={`relative flex items-center rounded-3xl shadow-xl border-green-500 ${extraStyles} ${
+            className={`relative rounded-3xl shadow-xl border-green-500 ${extraStyles} ${
               location.pathname === "/suscription/plans"
                 ? plan === 1
                   ? "border-4"
@@ -49,8 +62,7 @@ const CardGroup = () => {
                   styleTitle="text-2xl font-semibold "
                 >
                   Optimiza la productividad de tu equipo con nuestro potente
-                  gestor de empleados en tiempo real. Obtén insights valiosos
-                  para una gestión de recursos humanos más efectiva.
+                  gestor de empleados en tiempo real.
                 </Section>
               ) : (
                 <InformationPlan
@@ -65,7 +77,7 @@ const CardGroup = () => {
             </Card>
           </div>
           <div
-            className={`relative flex items-center rounded-3xl shadow-xl border-indigo-500 ${extraStyles} ${
+            className={`relative rounded-3xl shadow-xl border-indigo-500 ${extraStyles} ${
               location.pathname === "/suscription/plans"
                 ? plan === 2
                   ? "border-4"
@@ -86,8 +98,7 @@ const CardGroup = () => {
                 >
                   Maximice sus ventas con nuestro Gestor de Ventas impulsado por
                   Big Data, que ofrece análisis en tiempo real para comprender
-                  el comportamiento del cliente y anticipar las tendencias del
-                  mercado.
+                  el comportamiento del cliente.
                 </Section>
               ) : (
                 <InformationPlan
@@ -104,7 +115,7 @@ const CardGroup = () => {
             </Card>
           </div>
           <div
-            className={`relative flex items-center rounded-3xl shadow-xl border-yellow-500 ${extraStyles} ${
+            className={`relative rounded-3xl shadow-xl border-yellow-500 ${extraStyles} ${
               location.pathname === "/suscription/plans"
                 ? plan === 3
                   ? "border-4"
@@ -124,9 +135,7 @@ const CardGroup = () => {
                   styleTitle="text-2xl font-semibold "
                 >
                   Garantice la disponibilidad y seguridad de sus datos con
-                  nuestra solución de Almacenamiento de Datos, que ofrece
-                  escalabilidad y recuperación ante desastres para respaldar sus
-                  iniciativas de Big Data.
+                  nuestra solución de Almacenamiento de Datos.
                 </Section>
               ) : (
                 <InformationPlan
@@ -146,7 +155,7 @@ const CardGroup = () => {
         </div>
 
         {location.pathname === "/suscription/plans" && (
-          <div className="flex space-x-5 mt-8 text-white text-center">
+          <div className="flex space-x-5 mt-8 pb-5 text-white text-center">
             <button
               onClick={handleClick}
               className="bg-green-800 hover:bg-green-700  rounded-xl shadow-md shadow-gray-900 py-2 px-8 "

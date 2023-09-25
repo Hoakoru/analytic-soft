@@ -9,7 +9,7 @@ const CardModal = ({ children }) => {
 
   const closeModal = () => {
     setIsModalOpen(false);
-    navigate(`/application/`);
+    navigate("/application");
   };
 
   return (

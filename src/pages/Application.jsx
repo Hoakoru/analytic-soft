@@ -23,6 +23,7 @@ const Application = () => {
     getEmployeesService,
     getSalesService,
     getSalesServiceF,
+    getSalesServiceG,
     option,
     setOption,
     month,
@@ -138,7 +139,7 @@ const Application = () => {
 
   const handleUpdate = (row) => {
     setIsModalOpen(true);
-    navigate(`/application/update/${row.ci}`);
+    navigate(`/application/employee/update/${row.ci}`);
   };
 
   const handleDelete = (row) => {};
@@ -152,6 +153,7 @@ const Application = () => {
 
   useEffect(() => {
     getEmployeesService();
+    getSalesServiceG();
     setOption(1);
   }, []);
 
@@ -200,8 +202,8 @@ const Application = () => {
 
         <CardModal>
           <Routes>
-            <Route path="/" element={<FormEmployee />} />
-            <Route path="/update/:ci" element={<FormEmployee />} />
+            <Route path="/employee" element={<FormEmployee />} />
+            <Route path="/employee/update/:ci" element={<FormEmployee />} />
             <Route path="/sales" element={<FormSales />} />
             <Route path="/sales/update/:id" element={<FormSales />} />
           </Routes>

@@ -235,6 +235,8 @@ export const ServiceContextProvider = ({ children }) => {
   const [employee, setEmployee] = useState([]);
   /* estados para los ventas */
   const [sale, setSale] = useState([]);
+  /* estado del grafico general */
+  const [saleG, setSaleG] = useState([]);
   /* estado para el cambio de meses */
   const [option, setOption] = useState(0);
   /* estado de la importacion de empresas */
@@ -328,6 +330,61 @@ export const ServiceContextProvider = ({ children }) => {
       console.error(error);
     }
   };
+
+  const getSalesServiceG = async () => {
+    /* configuracion de colore predeterminados */
+    const colores = [
+      "rgba(255, 0, 0, 0.7)",
+      "rgba(0, 0, 255, 0.7)",
+      "rgba(255, 255, 0, 0.7)",
+      "rgba(0, 0, 128, 0.7)",
+      "rgba(135, 206, 235, 0.7)",
+      "rgba(75, 0, 130, 0.7)",
+      "rgba(0, 128, 0, 0.7)",
+    ];
+    /* los bordes predeterminados */
+    const bordes = [
+      "rgba(255, 128, 128, 1)",
+      "rgba(128, 128, 255, 1)",
+      "rgba(255, 255, 128, 1)",
+      "rgba(128, 128, 192, 1)",
+      "rgba(173, 216, 230, 1)",
+      "rgba(106, 90, 205, 1)",
+      "rgba(144, 238, 144, 1)",
+    ];
+    /* une ambos array */
+    const mergedData = dataVE.map((itemVE) => {
+      const matchingItem = dataVF.find(
+        (itemVF) => itemVF.productos === itemVE.productos
+      );
+      if (matchingItem) {
+        // Si hay un objeto con el mismo nombre en ambos arrays, combina las ventas en un array
+        return {
+          id: itemVE.id,
+          productos: itemVE.productos,
+          venta: [itemVE.venta, matchingItem.venta], // Combina las ventas en un array
+        };
+      } else {
+        // Si no hay un objeto con el mismo nombre en el array VF, simplemente agrega el objeto del array VE
+        return {
+          id: itemVE.id,
+          productos: itemVE.productos,
+          venta: [itemVE.venta], // Puedes establecer un valor predeterminado para la segunda venta si es necesario
+        };
+      }
+    });
+    /* carga los datos del grafico linear */
+    const dataLine = {
+      labels: month,
+      datasets: mergedData.map((item, index) => ({
+        label: `${item.productos}`,
+        data: item.venta,
+        borderColor: bordes[index],
+        backgroundColor: colores[index],
+      })),
+    };
+    setSaleG(dataLine);
+  };
   /* ambas funciones son para actualizar */
   /* solicitar un venta */
   const getSaleService = async (id) => {
@@ -385,6 +442,8 @@ export const ServiceContextProvider = ({ children }) => {
         createSaleService,
         getSalesService,
         getSalesServiceF,
+        saleG,
+        getSalesServiceG,
         getSaleService,
         updateSaleService,
         deleteSaleService,

@@ -7,7 +7,7 @@ const Card = ({ image, location, children }) => {
         </div>
       )}
 
-      <div className="flex flex-col justify-center items-center h-1/2 lg:h-full text-center text-slate-200">
+      <div className="flex flex-col justify-center items-center h-full text-center text-slate-200">
         {children}
       </div>
     </>

@@ -55,10 +55,10 @@ const Navbar = ({ currentPage }) => {
       )}
 
       {/* Botón */}
-      {location.pathname.startsWith('/application') ? (
+      {location.pathname.startsWith("/application") ? (
         <Link
           to="/"
-          className="text-white bg-slate-950 hover:bg-slate-700 py-2 px-4 rounded-xl shadow-md shadow-gray-800 hidden lg:flex"
+          className="text-white bg-slate-950 hover:bg-slate-700 py-2 px-4 rounded-xl shadow-md shadow-gray-800 hidden lg:flex duration-300 transform hover:scale-105"
         >
           Cerrar Sesion
         </Link>
@@ -92,7 +92,9 @@ const ScrollNav = ({ title, opcion }) => {
     <div className="flex items-center relative group h-full w-full">
       <ScrollLink
         to={opcion}
+        spy={true}
         smooth={true}
+        offset={-60}
         duration={500}
         className="text-white text-center text-xl w-full cursor-pointer hover:text-gray-300"
       >
@@ -158,7 +160,7 @@ const Offcanvas = ({ isOpen, onClose, currentPage }) => {
 
       {/* boton de inicio sesion */}
       <div className="mt-5 flex justify-center">
-        {location.pathname.startsWith('/application') ? (
+        {location.pathname.startsWith("/application") ? (
           <Link
             to="/"
             className="text-white bg-slate-800 hover:bg-amber-700 py-2 px-4 rounded-xl shadow-md shadow-gray-800"

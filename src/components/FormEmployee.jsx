@@ -35,7 +35,7 @@ const FormEmployee = () => {
       }
     };
     loadEmployee();
-  },[employee]);
+  }, [employee]);
 
   return (
     <>
@@ -50,7 +50,7 @@ const FormEmployee = () => {
             console.log("crear empleado");
           }
           resetForm();
-          /* navigate("/suscription/plans"); */ // Ajusta esto según tu navegación
+          navigate("/application"); 
         }}
       >
         {() => (
