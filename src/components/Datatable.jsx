@@ -5,19 +5,39 @@ import { useServices } from "../context/ServiceContext";
 const Datatable = ({ enunciado, columns }) => {
   const { employee, sale } = useServices();
   const [records, setRecords] = useState([]);
+  const [pending, setPending] = useState(true);
 
   useEffect(() => {
     const loadDataTable = async () => {
-      const newRecords =
-        enunciado === "empleados"
-          ? employee
-          : enunciado === "ventas"
-          ? sale
-          : [];
-      setRecords(newRecords);
+      if (enunciado === "empleados") {
+        setPending(true);
+
+        const timeout = setTimeout(() => {
+          setRecords(employee);
+          setPending(false);
+        }, 2000);
+
+        return () => clearTimeout(timeout);
+      }
     };
     loadDataTable();
-  }, [employee, sale]);
+  }, [employee]);
+
+  useEffect(() => {
+    const loadDataTable = async () => {
+      if (enunciado === "ventas") {
+        setPending(true);
+
+        const timeout = setTimeout(() => {
+          setRecords(sale);
+          setPending(false);
+        }, 2000);
+
+        return () => clearTimeout(timeout);
+      }
+    };
+    loadDataTable();
+  }, [sale]);
 
   /* const handleFilter = (e) => {
     const newData = data.filter((row) =>
@@ -74,6 +94,7 @@ const Datatable = ({ enunciado, columns }) => {
         paginationComponentOptions={paginationOptions}
         highlightOnHover
         pointerOnHover
+        progressPending={pending}
         customStyles={customStyles}
         fixedHeader
         fixedHeaderScrollHeight="78%"

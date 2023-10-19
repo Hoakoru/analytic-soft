@@ -1,7 +1,7 @@
 import { Bar, Pie } from "react-chartjs-2";
 import { useEffect, useState } from "react";
 import { useServices } from "../context/ServiceContext";
-import GeneralGrafic from "../components/GeneralGrafic"
+import GeneralGrafic from "../components/GeneralGrafic";
 import "chart.js/auto";
 
 export const optionsBar = {
@@ -34,7 +34,8 @@ export const optionPie = {
 };
 
 const GestorSells = () => {
-  const { option, sale } = useServices();
+  const { sale } = useServices();
+  const [loading, setLoading] = useState(true);
   const [dataBar, setDataBar] = useState({
     labels: [],
     datasets: [],
@@ -67,33 +68,49 @@ const GestorSells = () => {
   useEffect(() => {
     const loadDataGrafics = async () => {
       // carga lso datos del grafico bar
-      const dataGrafics = {
-        labels: sale.map((item) => item.productos),
-        datasets: [
-          {
-            data: sale.map((item) => item.venta),
-            borderColor: bordes,
-            backgroundColor: colores,
-          },
-        ],
-      };
-      setDataBar(dataGrafics);
-      setDataPie(dataGrafics);
+      setLoading(true);
+      setTimeout(() => {
+        const dataGrafics = {
+          labels: sale.map((item) => item.productos),
+          datasets: [
+            {
+              data: sale.map((item) => item.venta),
+              borderColor: bordes,
+              backgroundColor: colores,
+            },
+          ],
+        };
+        setDataBar(dataGrafics);
+        setDataPie(dataGrafics);
+        setLoading(false);
+      }, 2000);
     };
     loadDataGrafics();
   }, [sale]);
 
   return (
     <>
-      <GeneralGrafic />
       <div className="h-screen lg:h-96 flex flex-col lg:flex-row items-center justify-center bg-slate-200 rounded-lg shadow-md shadow-black">
         <div className="h-full lg:w-1/2 p-5">
-          <Bar options={optionsBar} data={dataBar} />
+          {loading ? (
+            <div className="h-full flex items-center justify-center">
+              <p className="text-3xl font-bold">Cargando...</p>
+            </div>
+          ) : (
+            <Bar options={optionsBar} data={dataBar} />
+          )}
         </div>
         <div className="h-full lg:w-1/2 p-5">
-          <Pie options={optionPie} data={dataPie} />
+          {loading ? (
+            <div className="h-full flex items-center justify-center">
+              <p className="text-3xl font-bold">Cargando...</p>
+            </div>
+          ) : (
+            <Pie options={optionPie} data={dataPie} />
+          )}
         </div>
       </div>
+      <GeneralGrafic />
     </>
   );
 };

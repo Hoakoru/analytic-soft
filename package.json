@@ -13,6 +13,7 @@
     "axios": "^1.5.0",
     "chart.js": "^4.4.0",
     "formik": "^2.4.3",
+    "js-cookie": "^3.0.5",
     "randomcolor": "^0.6.2",
     "react": "^18.2.0",
     "react-chartjs-2": "^5.2.0",

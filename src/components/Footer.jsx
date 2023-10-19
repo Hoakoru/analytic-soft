@@ -22,7 +22,7 @@ const Footer = () => {
 
       <div className="flex-1 flex flex-col items-end  p-10">
         <div className="grid grid-cols-1 lg:grid-cols-3 space-y-3 lg:space-y-0 lg:space-x-3">
-          <button>
+          {/* <button>
             <img src={img1} className="h-16 w-16" />
           </button>
           <button>
@@ -30,7 +30,7 @@ const Footer = () => {
           </button>
           <button>
             <img src={img3} className="h-16 w-16" />
-          </button>
+          </button> */}
         </div>
         <div className="mt-5">
           <p className="text-end">

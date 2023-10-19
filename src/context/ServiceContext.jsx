@@ -217,6 +217,21 @@ export const dataVF = [
   },
 ];
 
+const allData = {
+  1: dataVE,
+  2: dataVF,
+  3: [],
+  4: [],
+  5: [],
+  6: [],
+  7: [],
+  8: [],
+  9: [],
+  10: [],
+  11: [],
+  12: [],
+};
+
 const ServiceContext = createContext();
 
 export const useServices = () => {
@@ -230,13 +245,18 @@ export const useServices = () => {
 export const ServiceContextProvider = ({ children }) => {
   /* estados del registor de usuario */
   const [user, setUser] = useState([]);
+  const [users, setUsers] = useState([]);
   const [plan, setPlan] = useState("");
   /* estados para los empleados */
-  const [employee, setEmployee] = useState([]);
+  const [employee, setEmployee] = useState(dataE);
   /* estados para los ventas */
+  const [optionToData, setOptionToData] = useState(allData);
   const [sale, setSale] = useState([]);
   /* estado del grafico general */
-  const [saleG, setSaleG] = useState([]);
+  const [saleG, setSaleG] = useState({
+    labels: [],
+    datasets: [],
+  });
   /* estado para el cambio de meses */
   const [option, setOption] = useState(0);
   /* estado de la importacion de empresas */
@@ -247,8 +267,9 @@ export const ServiceContextProvider = ({ children }) => {
   /* crear un nuevo cliente */
   const createUserService = async (task) => {
     try {
-      const response = await createUser(task);
-      console.log(response);
+      /* const response = await createUser(task);
+      console.log(response); */
+      setUsers([...users, task]);
     } catch (error) {
       console.error(error);
     }
@@ -258,8 +279,9 @@ export const ServiceContextProvider = ({ children }) => {
   /* crear un empleado */
   const createEmployeeService = async (task) => {
     try {
-      const response = await createEmployee(task);
-      console.log(response);
+      /* const response = await createEmployee(task);
+      console.log(response); */
+      setEmployee([...employee, task]);
     } catch (error) {
       console.error(error);
     }
@@ -268,7 +290,7 @@ export const ServiceContextProvider = ({ children }) => {
   const getEmployeesService = async () => {
     try {
       /* const reponse = await getEmployee(); */
-      setEmployee(dataE);
+      setEmployee(employee);
     } catch (error) {
       console.error(error);
     }
@@ -286,18 +308,27 @@ export const ServiceContextProvider = ({ children }) => {
   /* actualizar un empleado */
   const updateEmployeeService = async (id, newFields) => {
     try {
-      const response = await updateEmployeeRequest(id, newFields);
-      console.log(response);
+      /* const response = await updateEmployeeRequest(id, newFields);
+      console.log(response); */
+      const newData = dataE.map((item) => {
+        if (item.ci == id) {
+          // Creamos una nueva copia del objeto con los datos actualizados
+          return { ...item, ...newFields };
+        }
+        return item;
+      });
+
+      setEmployee(newData);
     } catch (error) {
       console.error(error);
     }
   };
 
   /* eliminar un empleado */
-  const deleteEmployeeService = async (id) => {
+  const deleteEmployeeService = async (ci) => {
     try {
-      const response = await deleteEmployeeRequest(id);
-      setUser(user.filter((user) => user.id !== id));
+      /*  const response = await deleteEmployeeRequest(id); */
+      setEmployee(employee.filter((e) => e.ci != ci));
     } catch (error) {
       console.error(error);
     }
@@ -307,8 +338,21 @@ export const ServiceContextProvider = ({ children }) => {
   /* crear un venta */
   const createSaleService = async (task) => {
     try {
-      const response = await createSale(task);
-      console.log(response);
+      /* const response = await createSale(task);
+      console.log(response); */
+      task = { ...task, id: sale.length + 1 };
+      const newData = { ...optionToData };
+
+      // Verificamos que la opción exista en el objeto antes de agregar el objeto.
+      if (newData.hasOwnProperty(option)) {
+        newData[option] = [...newData[option], task];
+        // Actualizamos el estado con el nuevo objeto agregado.
+        setOptionToData(newData);
+        setSale(newData[option]);
+      } else {
+        // Manejar el caso de opción no válida si es necesario.
+        console.error("Opción no válida");
+      }
     } catch (error) {
       console.error(error);
     }
@@ -317,74 +361,82 @@ export const ServiceContextProvider = ({ children }) => {
   const getSalesService = async () => {
     try {
       /* const reponse = await getSale(); */
-      setSale(dataVE);
-    } catch (error) {
-      console.error(error);
-    }
-  };
-  const getSalesServiceF = async () => {
-    try {
-      /* const reponse = await getSale(); */
-      setSale(dataVF);
+      if (optionToData.hasOwnProperty(option)) {
+        setSale(optionToData[option]);
+      }
     } catch (error) {
       console.error(error);
     }
   };
 
   const getSalesServiceG = async () => {
-    /* configuracion de colore predeterminados */
-    const colores = [
-      "rgba(255, 0, 0, 0.7)",
-      "rgba(0, 0, 255, 0.7)",
-      "rgba(255, 255, 0, 0.7)",
-      "rgba(0, 0, 128, 0.7)",
-      "rgba(135, 206, 235, 0.7)",
-      "rgba(75, 0, 130, 0.7)",
-      "rgba(0, 128, 0, 0.7)",
-    ];
-    /* los bordes predeterminados */
-    const bordes = [
-      "rgba(255, 128, 128, 1)",
-      "rgba(128, 128, 255, 1)",
-      "rgba(255, 255, 128, 1)",
-      "rgba(128, 128, 192, 1)",
-      "rgba(173, 216, 230, 1)",
-      "rgba(106, 90, 205, 1)",
-      "rgba(144, 238, 144, 1)",
-    ];
-    /* une ambos array */
-    const mergedData = dataVE.map((itemVE) => {
-      const matchingItem = dataVF.find(
-        (itemVF) => itemVF.productos === itemVE.productos
-      );
-      if (matchingItem) {
-        // Si hay un objeto con el mismo nombre en ambos arrays, combina las ventas en un array
-        return {
-          id: itemVE.id,
-          productos: itemVE.productos,
-          venta: [itemVE.venta, matchingItem.venta], // Combina las ventas en un array
-        };
-      } else {
-        // Si no hay un objeto con el mismo nombre en el array VF, simplemente agrega el objeto del array VE
-        return {
-          id: itemVE.id,
-          productos: itemVE.productos,
-          venta: [itemVE.venta], // Puedes establecer un valor predeterminado para la segunda venta si es necesario
-        };
+    try {
+      /* configuracion de colore predeterminados */
+      const colores = [
+        "rgba(255, 0, 0, 0.7)",
+        "rgba(0, 0, 255, 0.7)",
+        "rgba(255, 255, 0, 0.7)",
+        "rgba(0, 0, 128, 0.7)",
+        "rgba(135, 206, 235, 0.7)",
+        "rgba(75, 0, 130, 0.7)",
+        "rgba(0, 128, 0, 0.7)",
+      ];
+      /* los bordes predeterminados */
+      const bordes = [
+        "rgba(255, 128, 128, 1)",
+        "rgba(128, 128, 255, 1)",
+        "rgba(255, 255, 128, 1)",
+        "rgba(128, 128, 192, 1)",
+        "rgba(173, 216, 230, 1)",
+        "rgba(106, 90, 205, 1)",
+        "rgba(144, 238, 144, 1)",
+      ];
+      const combinedData = {};
+
+      // Inicializar un array con ceros para representar las ventas
+      const zeroSalesArray = new Array(12).fill(null);
+
+      // Iterar sobre los datos de cada objeto en optionToData
+      for (const optionKey in optionToData) {
+        const optionData = optionToData[optionKey];
+
+        optionData.forEach((item) => {
+          const { id, productos, venta } = item;
+
+          // Comprobar si el producto ya existe en combinedData
+          if (!combinedData[productos]) {
+            // Si no existe, crear un nuevo objeto para el producto con ventas en ceros
+            combinedData[productos] = {
+              id,
+              productos,
+              venta: [...zeroSalesArray],
+            };
+          }
+
+          // Agregar la venta en la posición correspondiente
+          combinedData[productos].venta[parseInt(optionKey) - 1] = venta;
+        });
       }
-    });
-    /* carga los datos del grafico linear */
-    const dataLine = {
-      labels: month,
-      datasets: mergedData.map((item, index) => ({
-        label: `${item.productos}`,
-        data: item.venta,
-        borderColor: bordes[index],
-        backgroundColor: colores[index],
-      })),
-    };
-    setSaleG(dataLine);
+
+      // Convertir el objeto combinado en un array
+      const combinedDataArray = Object.values(combinedData);
+
+      /* carga los datos del grafico linear */
+      const dataLine = {
+        labels: month,
+        datasets: combinedDataArray.map((item, index) => ({
+          label: `${item.productos}`,
+          data: item.venta,
+          borderColor: bordes[index],
+          backgroundColor: colores[index],
+        })),
+      };
+      setSaleG(dataLine);
+    } catch (error) {
+      console.error(error);
+    }
   };
+
   /* ambas funciones son para actualizar */
   /* solicitar un venta */
   const getSaleService = async (id) => {
@@ -398,8 +450,26 @@ export const ServiceContextProvider = ({ children }) => {
   /* actualizar un venta */
   const updateSaleService = async (id, newFields) => {
     try {
-      const response = await updateSaleRequest(id, newFields);
-      console.log(response);
+      /* const response = await updateSaleRequest(id, newFields) */
+      /* console.log(response); */
+      const newData = { ...optionToData };
+
+      // Verificamos que la opción exista en el objeto antes de agregar el objeto.
+      if (newData.hasOwnProperty(option)) {
+        const updatedData = newData[option].map((item) => {
+          if (item.id == id) {
+            // Actualizamos los campos del elemento.
+            return { ...item, ...newFields };
+          }
+          return item;
+        });
+        newData[option] = updatedData;
+        setOptionToData(newData);
+        setSale(newData[option]);
+      } else {
+        // Manejar el caso de opción no válida si es necesario.
+        console.error("Opción no válida");
+      }
     } catch (error) {
       console.error(error);
     }
@@ -408,8 +478,23 @@ export const ServiceContextProvider = ({ children }) => {
   /* eliminar un venta */
   const deleteSaleService = async (id) => {
     try {
-      const response = await deleteSaleRequest(id);
-      setUser(user.filter((user) => user.id !== id));
+      /*  const response = await deleteSaleRequest(id); */
+      /* setUser(user.filter((user) => user.id !== id)); */
+      const newData = { ...optionToData };
+
+      // Verificamos que la opción exista en el objeto.
+      if (newData.hasOwnProperty(option)) {
+        // Filtramos el array para eliminar el elemento con el ID especificado.
+        const updatedData = newData[option].filter((item) => item.id !== id);
+
+        // Actualizamos el estado con el array actualizado.
+        newData[option] = updatedData;
+        setOptionToData(newData);
+        setSale(newData[option]);
+      } else {
+        // Manejar el caso de opción no válida si es necesario.
+        console.error("Opción no válida");
+      }
     } catch (error) {
       console.error(error);
     }
@@ -428,6 +513,7 @@ export const ServiceContextProvider = ({ children }) => {
     <ServiceContext.Provider
       value={{
         user,
+        users,
         setUser,
         createUserService,
         employee,
@@ -441,7 +527,6 @@ export const ServiceContextProvider = ({ children }) => {
         setSale,
         createSaleService,
         getSalesService,
-        getSalesServiceF,
         saleG,
         getSalesServiceG,
         getSaleService,
@@ -456,6 +541,7 @@ export const ServiceContextProvider = ({ children }) => {
         month,
         option,
         setOption,
+        optionToData,
       }}
     >
       {children}

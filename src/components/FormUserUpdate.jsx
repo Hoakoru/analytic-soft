@@ -40,7 +40,7 @@ const validationSchema = Yup.object({
   year_exp: Yup.string().required("Selecciona la experiencia de la empresa"),
 });
 
-const FormRegister = () => {
+const FormUserUpdate = () => {
   /* importacion de los metodos mediante el contexto */
   const { users, setUser, getCompany, company } = useServices();
   const styleError = "text-red-500 text-md mt-1   italic tracking-tight";
@@ -238,4 +238,4 @@ const FormRegister = () => {
   );
 };
 
-export default FormRegister;
+export default FormUserUpdate;

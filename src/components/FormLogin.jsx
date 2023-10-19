@@ -4,12 +4,13 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import { useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 import { useServices } from "../context/ServiceContext";
+import Cookies from 'js-cookie';
 
 const FormLogin = () => {
   //estamos usando navigate para poder utilizarlo con otro nombre
   const navigate = useNavigate();
   const [formSend, setFormSend] = useState(false); //creamos un estado de fornsend prar mostrar mensajes de error
-  const { user } = useServices();
+  const { users } = useServices();
   //en las siguinetes se puede ver las clases
   const fieldClasses =
     "border-b border-sky-600 w-full py-2 px-3 leading-tight text-sky-200 bg-gradient-to-l from-slate-900 to-sky-800 ronded rounded-md";
@@ -38,17 +39,17 @@ const FormLogin = () => {
       initialValues={{ email: "", password: "" }}
       validationSchema={validationSchema}
       onSubmit={(values, { resetForm }) => {
-        resetForm();
+        console.log(users);
         const comp = { email: values.email, password: values.password };
-        if (
-          comp.email !== user.email ||
-          comp.password !== user.pass
-        ) {
+        const validate = users.find((e) => comp.email === e.email && comp.password === e.pass);
+        if (validate) {
+          Cookies.set('userEmail', validate.email);
+          navigate(`/application/${validate.email}`);
+        } else {
           setFormSend(true);
           setTimeout(() => setFormSend(false), 5000);
-        } else {
-          navigate("/application");
         }
+        resetForm();
       }}
     >
       {() => (

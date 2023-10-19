@@ -4,12 +4,12 @@ import { useNavigate, useParams } from "react-router-dom";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 
 const FormSales = () => {
+  /* importacion de los metodos mediante el contexto */
+  const { createSaleService,updateSaleService, sale } = useServices();
   const [s, setS] = useState({
-    producto: "",
+    productos: "",
     venta: "",
   });
-  /* importacion de los metodos mediante el contexto */
-  const { createTask, sale } = useServices();
   const navigate = useNavigate(); /* impotrtacion de navegacion */
   const params = useParams();
 
@@ -32,7 +32,7 @@ const FormSales = () => {
       }
     };
     loadSale();
-  },[sale]);
+  }, [sale]);
 
   return (
     <>
@@ -40,12 +40,10 @@ const FormSales = () => {
         initialValues={s}
         enableReinitialize={true}
         onSubmit={async (values, { resetForm }) => {
-          /* createTask(values); */
           if (params.id) {
-            console.log(values);
-            console.log("crear empleado");
+            updateSaleService(params.id,values)
           } else {
-            console.log("actualizar empleado");
+            createSaleService(values);
           }
           resetForm();
           /* navigate("/suscription/plans"); */ // Ajusta esto según tu navegación

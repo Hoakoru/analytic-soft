@@ -12,7 +12,7 @@ const FormEmployee = () => {
     direccion: "",
   });
   /* importacion de los metodos mediante el contexto */
-  const { createTask, employee } = useServices();
+  const { createEmployeeService, updateEmployeeService, employee } = useServices();
   const navigate = useNavigate(); /* impotrtacion de navegacion */
   const params = useParams();
 
@@ -43,10 +43,12 @@ const FormEmployee = () => {
         initialValues={e}
         enableReinitialize={true}
         onSubmit={async (values, { resetForm }) => {
-          /* createTask(values); */
+   
           if (params.ci) {
-            console.log("actualizar empleado");
+            updateEmployeeService(params.ci,values)
+            console.log(params.ci,values);
           } else {
+            createEmployeeService(values);
             console.log("crear empleado");
           }
           resetForm();

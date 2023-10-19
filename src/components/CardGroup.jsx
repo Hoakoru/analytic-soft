@@ -10,7 +10,7 @@ import { useInView } from "react-intersection-observer";
 const CardGroup = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const { plan, setPlan, user, setUser } = useServices();
+  const { plan, setPlan, user,createUserService } = useServices();
 
   const optionView = {
     triggerOnce: false,
@@ -24,7 +24,8 @@ const CardGroup = () => {
       : `bg-transparent border px-8 h-96 `;
 
   const handleClick = () => {
-    setUser({ ...user, plan });
+    const newUser={ ...user, plan }
+    createUserService(newUser);
     navigate("/");
   };
 

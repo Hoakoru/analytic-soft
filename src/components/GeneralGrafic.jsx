@@ -19,6 +19,7 @@ export const optionsLine = {
 
 const GeneralGrafic = () => {
   const { saleG } = useServices();
+  const [loading, setLoading] = useState(true);
   const [dataLine, setDataLine] = useState({
     labels: [],
     datasets: [],
@@ -26,14 +27,24 @@ const GeneralGrafic = () => {
 
   useEffect(() => {
     const loadDataLine = async () => {
-      setDataLine(saleG);
+      setLoading(true);
+      setTimeout(() => {
+        setDataLine(saleG);
+        setLoading(false);
+      }, 2000);
     };
     loadDataLine();
   }, [saleG]);
 
   return (
     <div className="h-screen lg:h-96 bg-slate-200 rounded-lg shadow-md shadow-black p-5">
-      <Line options={optionsLine} data={dataLine} />
+      {loading ? (
+        <div className="h-full flex items-center justify-center">
+          <p className="text-3xl font-bold">Cargando...</p>
+        </div>
+      ) : (
+        <Line options={optionsLine} data={dataLine} />
+      )}
     </div>
   );
 };
